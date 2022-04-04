@@ -1,4 +1,3 @@
-import moment from "moment/moment"
 import { BN } from "@project-serum/anchor"
 import { toBN } from "@gemworks/gem-farm-ts"
 
@@ -25,12 +24,12 @@ export function getListDiffBasedOnMints(list1: any[], list2: any[]): any[] {
   return list1.filter((i) => diff.includes(i.mint.toBase58()))
 }
 
-export function parseDate(unixTsSec: number | string | BN) {
-  const unixBN = toBN(unixTsSec)
-  if (unixBN.eq(new BN(0))) {
-    return "--"
-  }
+// export function parseDate(unixTsSec: number | string | BN) {
+//   const unixBN = toBN(unixTsSec)
+//   if (unixBN.eq(new BN(0))) {
+//     return "--"
+//   }
 
-  const dateObj = new Date(unixBN.mul(new BN(1000)).toNumber())
-  return moment(dateObj).format("MMM Do YY, h:mm a")
-}
+//   const dateObj = new Date(unixBN.mul(new BN(1000)).toNumber())
+//   return moment(dateObj).format("MMM Do YY, h:mm a")
+// }
