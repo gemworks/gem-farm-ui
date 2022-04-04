@@ -7,6 +7,7 @@ import { useWallet } from "@solana/wallet-adapter-react"
 // import { LoadingIcon } from "@/components/icons/LoadingIcon"
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
+import WalletManager from "@/components/WalletManager/WalletManager"
 
 const farmId = process.env.NEXT_PUBLIC_GEMFARM_ID || ""
 
@@ -49,6 +50,7 @@ const StakePage = () => {
     >
       <Heading>Your staking account</Heading>
       <Text>Below you can stake, unstake and collect rewards.</Text>
+      <WalletManager />
       {!publicKey ? (
         /** Render nothing if there is no wallet connected. */
         <Text
