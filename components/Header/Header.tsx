@@ -1,13 +1,18 @@
 /** @jsxImportSource theme-ui */
 import Link from "next/link"
-import { Button, Container, Flex, Text } from "@theme-ui/components"
+import { Button, Container, Flex, Input, Text } from "@theme-ui/components"
 
 import WalletManager from "@/components/WalletManager/WalletManager"
-import { useState } from "react"
+import { Dispatch, SetStateAction, useState } from "react"
 import { CloseIcon, MenuIcon } from "../icons"
 
-const Header = () => {
+type Props = {
+  farmId?: string
+  setFarmId?: Dispatch<SetStateAction<string>>
+}
+const Header = ({ farmId, setFarmId }: Props) => {
   const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
+  const [isChangingFarmId, setIsChangingFarmId] = useState(false)
 
   return (
     <Flex
@@ -66,11 +71,13 @@ const Header = () => {
             &nbsp;&nbsp;&nbsp;&#8226;&nbsp;
             {process.env.NEXT_PUBLIC_CONNECTION_NETWORK}
           </Text>
+
           <Flex
             as="nav"
             sx={{
               gap: "1.6rem",
               display: "none",
+              alignItems: "center",
 
               /** Mobile styles when the menu is active */
               ...(isMobileMenuActive && {
@@ -109,6 +116,33 @@ const Header = () => {
               },
             }}
           >
+            {isChangingFarmId && (
+              <Input
+                sx={{
+                  fontSize: "1.1rem",
+                  padding: ".4rem",
+                  border: "none",
+                  borderBottom: "1px solid",
+                  borderRadius: 0,
+                  width: "auto",
+                }}
+                value={farmId}
+                onChange={(e) => setFarmId(e.target.value)}
+              />
+            )}
+
+            <a
+              tabIndex={0}
+              sx={{
+                margin: "0 auto",
+                fontSize: "1.1rem",
+                whiteSpace: "nowrap",
+              }}
+              onClick={() => setIsChangingFarmId((prev) => !prev)}
+            >
+              (Change Farm ID)
+            </a>
+
             <Button
               sx={{
                 alignSelf: "flex-end",

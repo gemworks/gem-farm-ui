@@ -1,6 +1,6 @@
 React UI for Gem Farm
 
-Copy content from `.env.template` into a `.env` file to deploy your own version.
+Copy and edit content from `.env.template` into a `.env` file to deploy your own version.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

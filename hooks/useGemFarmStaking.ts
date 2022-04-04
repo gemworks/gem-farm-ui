@@ -87,11 +87,13 @@ const useGemFarmStaking = (farmId: string) => {
 
           await fetchFarmerAccount(farmClient, bankClient)
         } catch (e) {
+          setFarmAccount(null)
+          setFarmerAccount(null)
           console.error(e)
         }
       }
     })()
-  }, [connection, wallet?.publicKey])
+  }, [connection, wallet?.publicKey, farmId])
 
   /**
    * Set Farmer Vault NFTs state
@@ -151,7 +153,7 @@ const useGemFarmStaking = (farmId: string) => {
     if (gemBankClient && farmerAccount && wallet?.publicKey) {
       fetchVaultNFTs()
     }
-  }, [wallet?.publicKey, gemBankClient, farmerAccount])
+  }, [wallet?.publicKey, gemBankClient, farmerAccount, farmId])
 
   /**
    * Handles selected items.

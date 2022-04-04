@@ -9,10 +9,11 @@ import { useWallet } from "@solana/wallet-adapter-react"
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import Header from "@/components/Header/Header"
 import { LoadingIcon } from "@/components/icons/LoadingIcon"
-
-const farmId = process.env.NEXT_PUBLIC_GEMFARM_ID || ""
+import { useState } from "react"
 
 const StakePage = () => {
+  const [farmId, setFarmId] = useState(process.env.NEXT_PUBLIC_GEMFARM_ID || "")
+
   const {
     walletNFTs,
     farmerAccount,
@@ -39,7 +40,8 @@ const StakePage = () => {
 
   return (
     <Container>
-      <Header />
+      <Header farmId={farmId} setFarmId={setFarmId} />
+
       <Flex
         sx={{
           flexDirection: "column",
@@ -68,7 +70,7 @@ const StakePage = () => {
           //     margin: "3.2rem 0"
           //   }}
           // />
-          <Text mt="1.6rem">Staking is not configured yet..</Text>
+          <Text mt="1.6rem">Farm ID is not configured.</Text>
         ) : /** If there is farmerAccount variable, but no address, it means account isn't initialized */
         farmerAccount && !farmerAccount?.identity ? (
           <Button
@@ -273,7 +275,7 @@ const StakePage = () => {
                       {walletNFTs.length && !isLocked ? (
                         <Text
                           sx={{
-                            margin: "1.6rem 0",
+                            margin: "3.2rem 0 .8rem 0",
                           }}
                           variant="small"
                         >
@@ -288,12 +290,7 @@ const StakePage = () => {
                           .join(", ")
                       : null} */}
                         {selectedWalletItems?.length && !isLocked ? (
-                          <Button
-                            sx={{
-                              margin: "1.6rem 0",
-                            }}
-                            onClick={handleMoveToVaultButtonClick}
-                          >
+                          <Button onClick={handleMoveToVaultButtonClick}>
                             Deposit selected
                           </Button>
                         ) : null}
@@ -397,7 +394,7 @@ const StakePage = () => {
                           {farmerVaultNFTs.length && !isLocked ? (
                             <Text
                               sx={{
-                                margin: "1.6rem 0",
+                                margin: "3.2rem 0 .8rem 0",
                               }}
                               variant="small"
                             >
