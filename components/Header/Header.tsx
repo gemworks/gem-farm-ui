@@ -116,6 +116,17 @@ const Header = ({ farmId, setFarmId }: Props) => {
               },
             }}
           >
+            <Button
+              sx={{
+                alignSelf: "flex-end",
+                padding: ".8rem",
+
+                ...(!isMobileMenuActive && { display: "none" }),
+              }}
+              onClick={() => setIsMobileMenuActive(false)}
+            >
+              <CloseIcon />
+            </Button>
             {isChangingFarmId && (
               <Input
                 sx={{
@@ -142,18 +153,6 @@ const Header = ({ farmId, setFarmId }: Props) => {
             >
               (Change Farm ID)
             </a>
-
-            <Button
-              sx={{
-                alignSelf: "flex-end",
-                padding: ".8rem",
-
-                ...(!isMobileMenuActive && { display: "none" }),
-              }}
-              onClick={() => setIsMobileMenuActive(false)}
-            >
-              <CloseIcon />
-            </Button>
 
             <WalletManager />
           </Flex>
