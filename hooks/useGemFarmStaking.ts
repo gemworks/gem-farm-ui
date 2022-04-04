@@ -337,12 +337,22 @@ const useGemFarmStaking = (farmId: string) => {
     await refetchNFTs()
   }
 
+  const isLocked = farmerVaultAccount?.locked
+
+  const availableA = farmerAccount?.rewardA
+    ? farmerAccount.rewardA.accruedReward
+        .sub(farmerAccount.rewardA.paidOutReward)
+        .toString()
+    : null
+
   return {
     walletNFTs,
     farmerAccount,
     farmerVaultAccount,
     farmerStatus,
     selectedWalletItems,
+    isLocked,
+    availableA,
     handleStakeButtonClick,
     handleUnstakeButtonClick,
     handleClaimButtonClick,

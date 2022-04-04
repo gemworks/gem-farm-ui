@@ -7,7 +7,7 @@ import { useWallet } from "@solana/wallet-adapter-react"
 // import { LoadingIcon } from "@/components/icons/LoadingIcon"
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
-import WalletManager from "@/components/WalletManager/WalletManager"
+import Header from "@/components/Header/Header"
 
 const farmId = process.env.NEXT_PUBLIC_GEMFARM_ID || ""
 
@@ -18,6 +18,8 @@ const StakePage = () => {
     farmerVaultAccount,
     farmerStatus,
     selectedWalletItems,
+    isLocked,
+    availableA,
     handleStakeButtonClick,
     handleUnstakeButtonClick,
     handleClaimButtonClick,
@@ -32,16 +34,9 @@ const StakePage = () => {
   } = useGemFarmStaking(farmId)
   const { publicKey } = useWallet()
 
-  const isLocked = farmerVaultAccount?.locked
-
-  const availableA = farmerAccount?.rewardA
-    ? farmerAccount.rewardA.accruedReward
-        .sub(farmerAccount.rewardA.paidOutReward)
-        .toString()
-    : null
-
   return (
     <Container>
+      <Header />
       <Flex
         sx={{
           flexDirection: "column",
@@ -51,7 +46,6 @@ const StakePage = () => {
       >
         <Heading>Your staking account</Heading>
         <Text>Below you can stake, unstake and collect rewards.</Text>
-        <WalletManager />
         {!publicKey ? (
           /** Render nothing if there is no wallet connected. */
           <Text

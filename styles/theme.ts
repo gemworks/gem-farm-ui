@@ -35,19 +35,19 @@ const theme: Theme = {
     //   }
     // }
     error: "#B00020",
-    success: "#5cb85c"
+    success: "#5cb85c",
   },
 
   sizes: {
-    container: "80rem"
+    container: "80rem",
   },
   config: {
-    useLocalStorage: true
+    useLocalStorage: true,
   },
 
   fonts: {
     heading:
-      'AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif'
+      'AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
   },
 
   buttons: {
@@ -66,13 +66,13 @@ const theme: Theme = {
         bg: "background",
         borderColor: "primary",
         cursor: "pointer",
-        opacity: 0.7
+        opacity: 0.7,
       },
 
       "&:disabled": {
         cursor: "not-allowed",
-        opacity: 0.3
-      }
+        opacity: 0.3,
+      },
     },
     secondary: {
       display: "flex",
@@ -88,13 +88,13 @@ const theme: Theme = {
       "&:not(:disabled):hover": {
         bg: "background",
         cursor: "pointer",
-        opacity: 0.7
+        opacity: 0.7,
       },
 
       "&:disabled": {
         cursor: "not-allowed",
-        opacity: 0.3
-      }
+        opacity: 0.3,
+      },
     },
     special: {
       display: "flex",
@@ -115,13 +115,13 @@ const theme: Theme = {
 
       "&:not(:disabled):hover": {
         background: "linear-gradient(225deg, rgb(117, 42, 70), grey)",
-        cursor: "pointer"
+        cursor: "pointer",
       },
 
       "&:disabled": {
         cursor: "not-allowed",
-        opacity: 0.3
-      }
+        opacity: 0.3,
+      },
     },
     resetted: {
       display: "flex",
@@ -137,14 +137,14 @@ const theme: Theme = {
 
       "&:not(:disabled):hover": {
         cursor: "pointer",
-        opacity: 0.7
+        opacity: 0.7,
       },
 
       "&:disabled": {
         cursor: "not-allowed",
-        opacity: 0.3
-      }
-    }
+        opacity: 0.3,
+      },
+    },
   },
 
   lineHeights: { body: 1.45 },
@@ -156,50 +156,50 @@ const theme: Theme = {
       fontSize: "2.2rem",
       fontFamily:
         'AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-      fontWeight: 900
+      fontWeight: 900,
     },
     headingSpecial: {
       color: "heading",
       lineHeight: "body",
       fontSize: "2.2rem",
       fontFamily:
-        'DalelandsUncial, AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
-      fontWeight: 900
+        'PressStart2P-Regular, monospace, AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+      fontWeight: 900,
     },
     heading2: {
       color: "heading",
       lineHeight: "body",
       fontSize: "1.9rem",
       fontFamily: "heading",
-      fontWeight: 600
+      fontWeight: 600,
     },
     heading3: {
       color: "heading",
       lineHeight: "body",
       fontSize: "1.7rem",
-      fontWeight: 600
+      fontWeight: 600,
     },
     heading4: {
       color: "heading",
       lineHeight: "body",
       fontSize: "1.6rem",
-      fontWeight: 600
+      fontWeight: 600,
     },
     base: {
       color: "text",
       lineHeight: "body",
-      fontSize: "1.4rem"
+      fontSize: "1.4rem",
     },
     small: {
       color: "text",
       lineHeight: "body",
-      fontSize: "1.2rem"
+      fontSize: "1.2rem",
     },
     xsmall: {
       color: "text",
       lineHeight: "body",
-      fontSize: "1rem"
-    }
+      fontSize: "1rem",
+    },
   },
 
   styles: {
@@ -219,16 +219,16 @@ const theme: Theme = {
         minHeight: "100vh",
         color: "text",
         backgroundColor: "background",
-        transition: "all .125s linear"
+        transition: "all .125s linear",
       },
 
       img: {
         maxWidth: "100%",
-        height: "auto"
+        height: "auto",
       },
 
       p: {
-        margin: 0
+        margin: 0,
       },
 
       a: {
@@ -237,7 +237,7 @@ const theme: Theme = {
 
         "&:hover": {
           cursor: "pointer",
-          color: "primary"
+          color: "primary",
         },
 
         "&:-webkit-any-link": {
@@ -248,29 +248,29 @@ const theme: Theme = {
           "&:hover": {
             cursor: "pointer",
             textDecoration: "underline",
-            opacity: 0.8
-          }
-        }
+            opacity: 0.8,
+          },
+        },
       },
       ul: {
-        paddingInlineStart: 0
+        paddingInlineStart: 0,
       },
       ".slick-dots": {
         "li button::before": {
-          color: "text"
+          color: "text",
         },
         "li.slick-active button::before": {
-          color: "text"
-        }
+          color: "text",
+        },
       },
 
-      ...reactTabsStyles
+      ...reactTabsStyles,
     },
 
     spinnerSmall: {
-      size: "1.2rem!important"
-    }
-  }
+      size: "1.2rem!important",
+    },
+  },
 }
 
 export default theme
