@@ -42,6 +42,7 @@ const StakePage = () => {
           flexDirection: "column",
           marginTop: "3.2rem",
           alignItems: "center",
+          padding: "0 1.6rem",
         }}
       >
         <Heading>Your staking account</Heading>
@@ -126,6 +127,14 @@ const StakePage = () => {
                   sx={{
                     gap: "1.6rem",
                     margin: "1.6rem 0",
+                    flexWrap: "wrap",
+                    alignItems: "center",
+                    alignSelf: "stretch",
+                    justifyContent: "center",
+
+                    "@media (min-width: 768px": {
+                      flexDirection: "row",
+                    },
                   }}
                 >
                   <Button

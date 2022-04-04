@@ -1,10 +1,14 @@
 /** @jsxImportSource theme-ui */
 import Link from "next/link"
-import { Container, Flex, Text } from "@theme-ui/components"
+import { Button, Container, Flex, Text } from "@theme-ui/components"
 
 import WalletManager from "@/components/WalletManager/WalletManager"
+import { useState } from "react"
+import { CloseIcon, MenuIcon } from "../icons"
 
 const Header = () => {
+  const [isMobileMenuActive, setIsMobileMenuActive] = useState(false)
+
   return (
     <Flex
       sx={{
@@ -68,6 +72,32 @@ const Header = () => {
               gap: "1.6rem",
               display: "none",
 
+              /** Mobile styles when the menu is active */
+              ...(isMobileMenuActive && {
+                display: "flex",
+                position: "fixed",
+                flexDirection: "column",
+                alignItems: "center",
+                top: "0",
+                left: "0",
+                width: "100vw",
+                height: "100vh",
+                padding: "1.6rem",
+                transition:
+                  "opacity 0.125s cubic-bezier(0.175, 0.885, 0.32, 1.275),visibility 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                backgroundColor: "background",
+                zIndex: 99,
+
+                "& > a": {
+                  marginBottom: ".8rem",
+                },
+
+                "&.active": {
+                  visibility: "visible",
+                  opacity: 1,
+                },
+              }),
+
               /** Desktop styles (reset mobile) */
               "@media (min-width: 768px)": {
                 display: "flex",
@@ -79,8 +109,31 @@ const Header = () => {
               },
             }}
           >
+            <Button
+              sx={{
+                alignSelf: "flex-end",
+                padding: ".8rem",
+
+                ...(!isMobileMenuActive && { display: "none" }),
+              }}
+              onClick={() => setIsMobileMenuActive(false)}
+            >
+              <CloseIcon />
+            </Button>
+
             <WalletManager />
           </Flex>
+          <Button
+            sx={{
+              padding: ".8rem",
+              "@media(min-width: 768px)": {
+                display: "none",
+              },
+            }}
+            onClick={() => setIsMobileMenuActive(true)}
+          >
+            <MenuIcon />
+          </Button>
         </Flex>
       </Container>
     </Flex>
