@@ -22,7 +22,7 @@ const Header = () => {
             alignItems: "center",
             justifyContent: "space-between",
           }}
-          p="1.6rem"
+          p=".8rem"
         >
           <Link href="/" passHref>
             <Flex as="a" sx={{ alignItems: "center", flexDirection: "column" }}>

@@ -97,7 +97,7 @@ const StakePage = () => {
                       sx={{
                         maxHeight: "2.4rem",
                       }}
-                      src="images/icon-list-item.png"
+                      src="images/gemtransparent.gif"
                     />
                     <Text>
                       NFTs staked:&nbsp;

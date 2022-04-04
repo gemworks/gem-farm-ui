@@ -13,13 +13,19 @@ export const getGradient = (rgb: string) => {
   return `linear-gradient(225deg, ${rgb} 0%, rgba(${splitted[0]}, ${splitted[1]}, ${splitted[2]}, 0.7) 50%, rgba(${splitted[0]}, ${splitted[1]}, ${splitted[2]}, 0.5) 100%)`
 }
 
+/**
+ * rgb(84, 42, 147)
+ * rgb(48, 114, 180, .7)
+ *
+ */
+
 const theme: Theme = {
   ...base,
   colors: {
     background: "rgb(4, 4, 3)",
     text: "rgb(226, 217, 211)",
-    primary: "rgb(117, 42, 70)",
-    primaryGradient: getGradient("rgb(117, 42, 70)"),
+    primary: "rgb(48, 114, 180, .7)",
+    primaryGradient: getGradient("rgb(48, 114, 180, .7)"),
     heading: "rgb(226, 217, 211)",
     background2: "#1E1E24",
     backgroundGradient: getGradient("rgb(4, 4, 3)"),
@@ -27,8 +33,8 @@ const theme: Theme = {
     //   light: {
     //     background: "rgb(226, 217, 211)",
     //     text: "rgb(4, 4, 3)",
-    //     primary: "rgb(117, 42, 70)",
-    //     primaryGradient: getGradient("rgb(117, 42, 70)"),
+    //     primary: "rgb(48, 114, 180, .7)",
+    //     primaryGradient: getGradient("rgb(48, 114, 180, .7)"),
     //     heading: "#1E1E24",
     //     background2: "#1E1E24",
     //     backgroundGradient: getGradient("rgb(226, 217, 211)")
@@ -103,7 +109,7 @@ const theme: Theme = {
       color: "heading",
       transform: "perspective(1px) translateZ(0)",
       position: "relative",
-      background: "linear-gradient(45deg, rgb(117, 42, 70), grey)",
+      background: "linear-gradient(45deg, rgb(48, 114, 180, .7), grey)",
       borderRadius: ".4rem",
       boxShadow: "0 0 5px 2px #00000054",
       fontSize: "1.6rem",
@@ -114,7 +120,7 @@ const theme: Theme = {
       transition: "all .125s linear",
 
       "&:not(:disabled):hover": {
-        background: "linear-gradient(225deg, rgb(117, 42, 70), grey)",
+        background: "linear-gradient(225deg, rgb(48, 114, 180, .7), grey)",
         cursor: "pointer",
       },
 
