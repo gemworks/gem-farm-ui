@@ -8,6 +8,7 @@ import { useWallet } from "@solana/wallet-adapter-react"
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs"
 import Header from "@/components/Header/Header"
+import { LoadingIcon } from "@/components/icons/LoadingIcon"
 
 const farmId = process.env.NEXT_PUBLIC_GEMFARM_ID || ""
 
@@ -20,6 +21,7 @@ const StakePage = () => {
     selectedWalletItems,
     isLocked,
     availableA,
+    feedbackStatus,
     handleStakeButtonClick,
     handleUnstakeButtonClick,
     handleClaimButtonClick,
@@ -32,6 +34,7 @@ const StakePage = () => {
     handleInitStakingButtonClick,
     handleRefreshRewardsButtonClick,
   } = useGemFarmStaking(farmId)
+
   const { publicKey } = useWallet()
 
   return (
@@ -47,6 +50,7 @@ const StakePage = () => {
       >
         <Heading>Your staking account</Heading>
         <Text>Below you can stake, unstake and collect rewards.</Text>
+
         {!publicKey ? (
           /** Render nothing if there is no wallet connected. */
           <Text
@@ -57,8 +61,7 @@ const StakePage = () => {
           >
             Connect your wallet first.
           </Text>
-        ) : /** If there is farmerAccount variable, but no address, it means account isn't initialized */
-        !farmerAccount ? (
+        ) : !farmerAccount ? (
           // <LoadingIcon
           //   size={"3.2rem"}
           //   sx={{
@@ -66,7 +69,8 @@ const StakePage = () => {
           //   }}
           // />
           <Text mt="1.6rem">Staking is not configured yet..</Text>
-        ) : farmerAccount && !farmerAccount?.identity ? (
+        ) : /** If there is farmerAccount variable, but no address, it means account isn't initialized */
+        farmerAccount && !farmerAccount?.identity ? (
           <Button
             sx={{
               margin: "3.2rem 0",
@@ -168,7 +172,7 @@ const StakePage = () => {
                         margin: "0 .4rem 0 .8rem",
                         maxHeight: "2.4rem",
                       }}
-                      src="images/icon-vithril.png"
+                      src="images/icon-list-item.png"
                     />
                     {availableA ? (
                       <b>{(availableA / 1000000000).toFixed(2)}</b>
@@ -179,6 +183,23 @@ const StakePage = () => {
                   <Button onClick={handleRefreshRewardsButtonClick}>
                     Refresh
                   </Button>
+                </Flex>
+                <Flex
+                  sx={{
+                    alignItems: "center",
+                    gap: ".8rem",
+                    margin: ".8rem 0",
+                  }}
+                >
+                  {feedbackStatus ? (
+                    <>
+                      <LoadingIcon size="1.6rem" />
+                      {"  "} <Text variant="small">{feedbackStatus}</Text>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  &nbsp;
                 </Flex>
               </>
             ) : null}
@@ -239,7 +260,7 @@ const StakePage = () => {
                               sx={{
                                 maxWidth: "16rem",
                                 "> img": {
-                                  border: "2px solid transparent",
+                                  border: "3px solid transparent",
                                   borderColor: isSelected
                                     ? "primary"
                                     : "transparent",
@@ -252,7 +273,7 @@ const StakePage = () => {
                       {walletNFTs.length && !isLocked ? (
                         <Text
                           sx={{
-                            margin: "3.2rem 0",
+                            margin: "1.6rem 0",
                           }}
                           variant="small"
                         >
@@ -325,7 +346,6 @@ const StakePage = () => {
                             alignItems: "center",
                           }}
                         >
-                          {console.log(farmerVaultNFTs)}
                           <div
                             sx={{
                               display: "grid",
@@ -364,7 +384,7 @@ const StakePage = () => {
                                   sx={{
                                     maxWidth: "16rem",
                                     "> img": {
-                                      border: "2px solid transparent",
+                                      border: "3px solid transparent",
                                       borderColor: isSelected
                                         ? "primary"
                                         : "transparent",
@@ -377,7 +397,7 @@ const StakePage = () => {
                           {farmerVaultNFTs.length && !isLocked ? (
                             <Text
                               sx={{
-                                margin: "3.2rem 0",
+                                margin: "1.6rem 0",
                               }}
                               variant="small"
                             >
