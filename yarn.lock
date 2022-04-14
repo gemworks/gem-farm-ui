@@ -207,10 +207,10 @@
     "@ethersproject/logger" "^5.6.0"
     hash.js "1.1.7"
 
-"@gemworks/gem-farm-ts@^0.22.8":
-  version "0.22.8"
-  resolved "https://registry.yarnpkg.com/@gemworks/gem-farm-ts/-/gem-farm-ts-0.22.8.tgz#3de93ecab7cbc1cbe367a20cad60f333c36327cf"
-  integrity sha512-oEbuj5P/FwaYN6uM3fg47a6RlfzbXyh33yXl2cQHofr0NV7JGXm7jwxoaXy++WgbOMiFcp/XRZmt1t1x8xXb4A==
+"@gemworks/gem-farm-ts@^0.22.11":
+  version "0.22.11"
+  resolved "https://registry.yarnpkg.com/@gemworks/gem-farm-ts/-/gem-farm-ts-0.22.11.tgz#216758e125679b19f4a3558b9933c6db923f0ec9"
+  integrity sha512-ux+Qg9wp3sb9caz7ioWzbPlDzUNRg4rQmSqkjuaG9h4eUvq8N73yScLONCeA23wKzhzW1k92+Oeylh8v5KWgIA==
   dependencies:
     "@metaplex-foundation/mpl-token-metadata" "^0.0.2"
     "@metaplex/js" "^4.9.0"
@@ -759,7 +759,27 @@
     "@solana/wallet-adapter-tokenpocket" "^0.4.2"
     "@solana/wallet-adapter-torus" "^0.11.10"
 
-"@solana/web3.js@^1.17.0", "@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.34.0", "@solana/web3.js@^1.36.0":
+"@solana/web3.js@^1.17.0":
+  version "1.37.2"
+  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.2.tgz#41f2daf402743d2cdda85c65a7a4e71d86b795e9"
+  integrity sha512-rgPidynwPTu8iLmS++aQbDGiPPtwjRmu+uQxF9jTNT7v3ifKIlS4HccMdjj4WDcYx8h2mUtQX5xkdk6liSbdvg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    "@ethersproject/sha2" "^5.5.0"
+    "@solana/buffer-layout" "^4.0.0"
+    bn.js "^5.0.0"
+    borsh "^0.7.0"
+    bs58 "^4.0.1"
+    buffer "6.0.1"
+    cross-fetch "^3.1.4"
+    jayson "^3.4.4"
+    js-sha3 "^0.8.0"
+    rpc-websockets "^7.4.2"
+    secp256k1 "^4.0.2"
+    superstruct "^0.14.2"
+    tweetnacl "^1.0.0"
+
+"@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.34.0", "@solana/web3.js@^1.36.0":
   version "1.37.0"
   resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.0.tgz#167b5b5d4aedc151237d9230b6142da068b0af34"
   integrity sha512-O2iCcgkGdi2FXwVLztPIZHcBuZXdhbVLavMsG+RdEyFGzFD0tQN1rOJ+Xb5eaexjqtgcqRN+Fyg3wAhLcHJbiA==

@@ -1,11 +1,10 @@
 /** @jsxImportSource theme-ui */
 import React, { useRef, useState } from "react"
 import { Button, Flex, Text } from "theme-ui"
-import Link from "next/link"
 
 import { DotsIcon } from "@/components/icons/"
-import useOutsideClick from "hooks/useOutsideClick"
-import { NFT } from "hooks/useWalletNFTs"
+import useOutsideClick from "@/hooks/useOutsideClick"
+import { NFT } from "@/hooks/useWalletNFTs"
 
 type Props = {
   item: NFT
@@ -26,7 +25,7 @@ const CollectionItem = (props: Props) => {
 
   if (!item) return null
 
-  const { onChain, offChain } = item
+  const { onchainMetadata, externalMetadata } = item
 
   const handleOnClick = (item: NFT) => () => onClick ? onClick(item) : true
   const handleKeyDown =
@@ -52,13 +51,13 @@ const CollectionItem = (props: Props) => {
         "&:hover, &:focus, > .toggle-menu:focus": {
           "> .toggle-menu": {
             visibility: "visible",
-            opacity: 1
+            opacity: 1,
           },
 
           "> img": {
-            opacity: 0.7
-          }
-        }
+            opacity: 0.7,
+          },
+        },
       }}
       className={className}
       onClick={handleOnClick(item)}
@@ -82,8 +81,8 @@ const CollectionItem = (props: Props) => {
           "&:hover, &:focus": {
             visibility: "visible",
             cursor: "pointer",
-            opacity: 1
-          }
+            opacity: 1,
+          },
         }}
       >
         <DotsIcon
@@ -91,7 +90,7 @@ const CollectionItem = (props: Props) => {
             width: "3.2rem",
             height: "3.2rem",
             stroke: "heading",
-            strokeWidth: "2"
+            strokeWidth: "2",
           }}
         />
       </Button>
@@ -110,11 +109,16 @@ const CollectionItem = (props: Props) => {
           transition: "all .125s linear",
           boxShadow: "0px 4px 4px rgba(0,0,0,0.25)",
           gap: ".8rem",
-          zIndex: 2
+          zIndex: 2,
+          fontSize: "1.2rem",
+
+          a: {
+            whiteSpace: "nowrap",
+          },
         }}
       >
         <a
-          href={onChain.metaData.data.uri}
+          href={onchainMetadata.data.uri}
           rel="noopener noreferrer"
           target="_blank"
           tabIndex={1}
@@ -122,7 +126,7 @@ const CollectionItem = (props: Props) => {
           View raw JSON
         </a>
         <a
-          href={offChain.image}
+          href={externalMetadata.image}
           rel="noopener noreferrer"
           target="_blank"
           tabIndex={1}
@@ -135,9 +139,9 @@ const CollectionItem = (props: Props) => {
         sx={{
           borderRadius: ".4rem",
           transition: "all .125s linear",
-          opacity: isDropdownActive ? 0.7 : 1
+          opacity: isDropdownActive ? 0.7 : 1,
         }}
-        src={offChain.image}
+        src={externalMetadata.image}
       />
       <Text
         variant="small"
@@ -146,17 +150,17 @@ const CollectionItem = (props: Props) => {
           whiteSpace: "nowrap",
           textOverflow: "ellipsis",
           padding: "0 .8rem",
-          mt: ".8rem"
+          mt: ".8rem",
         }}
       >
-        {offChain.name}
+        {externalMetadata.name}
         {/* <br />
     <a
-      href={`https://solscan.io/token/${onChain.metaData.mint}`}
+      href={`https://solscan.io/token/${onchainMetadata.metaData.mint}`}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {onChain.metaData.mint}
+      {onchainMetadata.metaData.mint}
     </a> */}
       </Text>
     </Flex>

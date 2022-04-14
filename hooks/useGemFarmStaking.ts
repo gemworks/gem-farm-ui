@@ -8,16 +8,13 @@ import { PublicKey } from "@solana/web3.js"
 import useWalletNFTs, { NFT } from "hooks/useWalletNFTs"
 import { initGemBank } from "lib/gem-farm/common/gem-bank"
 import { GemFarm, initGemFarm } from "lib/gem-farm/common/gem-farm"
-import { getNFTMetadataForMany } from "lib/gem-farm/common/web3/NFTget"
-import { Metadata } from "lib/metadata"
+import { getNFTMetadataForMany } from "utils/nfts"
 import { GemBank } from "lib/gem-farm/common/gem-bank"
 
 const useGemFarmStaking = (farmId: string) => {
   const { connection } = useConnection()
   const wallet = useAnchorWallet() as SignerWalletAdapter
-  const { walletNFTs, refetchNFTs } = useWalletNFTs([
-    "9bAVeEj62aBZVspYu5iEo2GSLRzFwLYgEsX5CoeCHN2n",
-  ])
+  const { walletNFTs } = useWalletNFTs()
 
   const [farmAccount, setFarmAccount] = useState<any>(null) // @TODO add type to farmAccount
   const [farmerAccount, setFarmerAccount] = useState<any>(null) // @TODO add type to farmerAccount
@@ -129,21 +126,12 @@ const useGemFarmStaking = (farmId: string) => {
           )
 
           /** Transform to use on the UI */
-          const transformedVaultNFTs = currentVaultNFTs.map((nft) => ({
-            onChain: {
-              metaData: nft.onchainMetadata,
-              tokenAccount: nft.pubkey,
-            } as {
-              metaData: Metadata
-              tokenAccount: PublicKey
-            },
-            offChain: nft.externalMetadata as any,
-          }))
 
+          console.log(currentVaultNFTs)
           /**
            * Set Vault NFTs state
            */
-          setFarmerVaultNFTs(transformedVaultNFTs)
+          setFarmerVaultNFTs(currentVaultNFTs)
         } catch (e) {
           console.log(e)
         }
@@ -161,13 +149,13 @@ const useGemFarmStaking = (farmId: string) => {
   const handleWalletItemClick = (item: NFT) => {
     setSelectedWalletItems((prev) => {
       const exists = prev.find(
-        (NFT) => NFT.onChain.metaData.mint === item.onChain.metaData.mint
+        (NFT) => NFT.onchainMetadata.mint === item.onchainMetadata.mint
       )
 
       /** Remove if exists */
       if (exists) {
         return prev.filter(
-          (NFT) => NFT.onChain.metaData.mint !== item.onChain.metaData.mint
+          (NFT) => NFT.onchainMetadata.mint !== item.onchainMetadata.mint
         )
       }
 
@@ -178,13 +166,13 @@ const useGemFarmStaking = (farmId: string) => {
   const handleVaultItemClick = (item: NFT) => {
     setSelectedVaultItems((prev) => {
       const exists = prev.find(
-        (NFT) => NFT.onChain.metaData.mint === item.onChain.metaData.mint
+        (NFT) => NFT.onchainMetadata.mint === item.onchainMetadata.mint
       )
 
       /** Remove if exists */
       if (exists) {
         return prev.filter(
-          (NFT) => NFT.onChain.metaData.mint !== item.onChain.metaData.mint
+          (NFT) => NFT.onchainMetadata.mint !== item.onchainMetadata.mint
         )
       }
 
@@ -239,18 +227,18 @@ const useGemFarmStaking = (farmId: string) => {
     setFeedbackStatus("Depositing Gems to the vault...")
     for (const nft of selectedWalletItems) {
       const creator = new PublicKey(
-        nft.onChain.metaData.data.creators?.[0].address || ""
+        nft.onchainMetadata.data.creators?.[0].address || ""
       )
 
       await depositGem(
-        new PublicKey(nft.onChain.metaData.mint),
+        new PublicKey(nft.onchainMetadata.mint),
         creator,
-        new PublicKey(nft.onChain.tokenAccount)
+        nft.pubkey
       )
     }
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
 
@@ -264,11 +252,11 @@ const useGemFarmStaking = (farmId: string) => {
 
     setFeedbackStatus("Withdrawing Gems...")
     for (const nft of selectedVaultItems) {
-      await withdrawGem(new PublicKey(nft.onChain.metaData.mint))
+      await withdrawGem(new PublicKey(nft.onchainMetadata.mint))
     }
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
 
@@ -286,7 +274,7 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
     // selectedNFTs.value = [];
@@ -302,7 +290,7 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
     // selectedNFTs.value = [];
@@ -322,7 +310,7 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
     // await fetchFarmer();
@@ -340,7 +328,7 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
     // await fetchFarmer();
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
   }
@@ -358,7 +346,7 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    await refetchNFTs()
+    // await refetchNFTs()
 
     setFeedbackStatus("")
   }

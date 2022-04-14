@@ -248,13 +248,13 @@ const StakePage = () => {
                         {walletNFTs.map((item) => {
                           const isSelected = selectedWalletItems.find(
                             (NFT) =>
-                              NFT.onChain.metaData.mint ===
-                              item.onChain.metaData.mint
+                              NFT.onchainMetadata.mint ===
+                              item.onchainMetadata.mint
                           )
 
                           return (
                             <CollectionItem
-                              key={item.onChain.metaData.mint}
+                              key={item.onchainMetadata.mint}
                               item={item}
                               onClick={
                                 !isLocked ? handleWalletItemClick : () => true
@@ -286,7 +286,7 @@ const StakePage = () => {
                         {/* Selected:{" "}
                     {selectedWalletItems && selectedWalletItems.length
                       ? selectedWalletItems
-                          .map((NFT) => NFT.onChain.metaData.data.name)
+                          .map((NFT) => NFT.onchainMetadata.metaData.data.name)
                           .join(", ")
                       : null} */}
                         {selectedWalletItems?.length && !isLocked ? (
@@ -304,7 +304,7 @@ const StakePage = () => {
                         alignSelf: "stretch",
                       }}
                     >
-                      <Text>There are no Elven NFTs on your wallet.</Text>
+                      <Text>There are no NFTs on your wallet.</Text>
                     </Flex>
                   )
                 ) : /** No walletNFTs and public key, means it is loading */
@@ -365,13 +365,13 @@ const StakePage = () => {
                             {farmerVaultNFTs.map((item) => {
                               const isSelected = selectedVaultItems.find(
                                 (NFT) =>
-                                  NFT.onChain.metaData.mint ===
-                                  item.onChain.metaData.mint
+                                  NFT.onchainMetadata.mint ===
+                                  item.onchainMetadata.mint
                               )
 
                               return (
                                 <CollectionItem
-                                  key={item.onChain.metaData.mint}
+                                  key={item.onchainMetadata.mint}
                                   item={item}
                                   onClick={
                                     !isLocked
@@ -406,7 +406,7 @@ const StakePage = () => {
                             <>
                               {/* Selected:{" "}
                           {selectedVaultItems
-                            .map((NFT) => NFT.onChain.metaData.data.name)
+                            .map((NFT) => NFT.onchainMetadata.metaData.data.name)
                             .join(", ")} */}
                               {!isLocked ? (
                                 <Button onClick={handleMoveToWalletButtonClick}>
