@@ -2,6 +2,8 @@ React UI for Gem Farm
 
 Copy and edit content from `.env.template` into a `.env` file to deploy your own version.
 
+It is recommended to use your own RPC URL instead of a public one; otherwise, the network performance will be compromised.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
