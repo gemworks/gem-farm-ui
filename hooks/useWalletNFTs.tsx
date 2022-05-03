@@ -39,7 +39,7 @@ const useWalletNFTs = () => {
     if (publicKey) {
       fetchNFTs()
     }
-  }, [publicKey])
+  })
 
   return { walletNFTs }
 }
