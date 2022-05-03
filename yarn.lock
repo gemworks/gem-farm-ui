@@ -207,14 +207,14 @@
     "@ethersproject/logger" "^5.6.0"
     hash.js "1.1.7"
 
-"@gemworks/gem-farm-ts@^0.22.11":
-  version "0.22.11"
-  resolved "https://registry.yarnpkg.com/@gemworks/gem-farm-ts/-/gem-farm-ts-0.22.11.tgz#216758e125679b19f4a3558b9933c6db923f0ec9"
-  integrity sha512-ux+Qg9wp3sb9caz7ioWzbPlDzUNRg4rQmSqkjuaG9h4eUvq8N73yScLONCeA23wKzhzW1k92+Oeylh8v5KWgIA==
+"@gemworks/gem-farm-ts@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@gemworks/gem-farm-ts/-/gem-farm-ts-0.24.1.tgz#2497f80affa54121ffb04da766791ecd1ea7cf0b"
+  integrity sha512-/CnX1CcE4m/FDD/slixCs9RXox3ZUpnvs1ccHPlSbSmRZpbOMltcUQy6xqi7i0zITzSI90i0iXfCuRnV2CwGiw==
   dependencies:
     "@metaplex-foundation/mpl-token-metadata" "^0.0.2"
     "@metaplex/js" "^4.9.0"
-    "@project-serum/anchor" "0.22.0"
+    "@project-serum/anchor" "0.24.2"
     "@solana/spl-token" "^0.1.8"
     "@solana/wallet-adapter-base" "^0.8.1"
     "@solana/web3.js" "^1.31.0"
@@ -477,13 +477,13 @@
   resolved "https://registry.yarnpkg.com/@pedrouid/environment/-/environment-1.0.1.tgz#858f0f8a057340e0b250398b75ead77d6f4342ec"
   integrity sha512-HaW78NszGzRZd9SeoI3JD11JqY+lubnaOx7Pewj5pfjqWXOEATpeKIFb9Z4t2WBUK2iryiXX3lzWwmYWgUL0Ug==
 
-"@project-serum/anchor@0.22.0":
-  version "0.22.0"
-  resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.22.0.tgz#79d182851346fb46d471577c63eabdf6f199c03e"
-  integrity sha512-EJOE790pAQjm07loh7/JYzfcgfYv3SChBb2b9lhVdjjiimSEQrf3ESy+CGMAqcFAsyr699Ewj5k7RizY1y31cg==
+"@project-serum/anchor@0.24.2":
+  version "0.24.2"
+  resolved "https://registry.yarnpkg.com/@project-serum/anchor/-/anchor-0.24.2.tgz#a3c52a99605c80735f446ca9b3a4885034731004"
+  integrity sha512-0/718g8/DnEuwAidUwh5wLYphUYXhUbiClkuRNhvNoa+1Y8a4g2tJyxoae+emV+PG/Gikd/QUBNMkIcimiIRTA==
   dependencies:
     "@project-serum/borsh" "^0.2.5"
-    "@solana/web3.js" "^1.17.0"
+    "@solana/web3.js" "^1.36.0"
     base64-js "^1.5.1"
     bn.js "^5.1.2"
     bs58 "^4.0.1"
@@ -492,7 +492,6 @@
     cross-fetch "^3.1.5"
     crypto-hash "^1.3.0"
     eventemitter3 "^4.0.7"
-    find "^0.3.0"
     js-sha256 "^0.9.0"
     pako "^2.0.3"
     snake-case "^3.0.4"
@@ -758,26 +757,6 @@
     "@solana/wallet-adapter-solong" "^0.9.2"
     "@solana/wallet-adapter-tokenpocket" "^0.4.2"
     "@solana/wallet-adapter-torus" "^0.11.10"
-
-"@solana/web3.js@^1.17.0":
-  version "1.37.2"
-  resolved "https://registry.yarnpkg.com/@solana/web3.js/-/web3.js-1.37.2.tgz#41f2daf402743d2cdda85c65a7a4e71d86b795e9"
-  integrity sha512-rgPidynwPTu8iLmS++aQbDGiPPtwjRmu+uQxF9jTNT7v3ifKIlS4HccMdjj4WDcYx8h2mUtQX5xkdk6liSbdvg==
-  dependencies:
-    "@babel/runtime" "^7.12.5"
-    "@ethersproject/sha2" "^5.5.0"
-    "@solana/buffer-layout" "^4.0.0"
-    bn.js "^5.0.0"
-    borsh "^0.7.0"
-    bs58 "^4.0.1"
-    buffer "6.0.1"
-    cross-fetch "^3.1.4"
-    jayson "^3.4.4"
-    js-sha3 "^0.8.0"
-    rpc-websockets "^7.4.2"
-    secp256k1 "^4.0.2"
-    superstruct "^0.14.2"
-    tweetnacl "^1.0.0"
 
 "@solana/web3.js@^1.20.0", "@solana/web3.js@^1.21.0", "@solana/web3.js@^1.30.2", "@solana/web3.js@^1.31.0", "@solana/web3.js@^1.34.0", "@solana/web3.js@^1.36.0":
   version "1.37.0"
@@ -2221,13 +2200,6 @@ find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
-find@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/find/-/find-0.3.0.tgz#4082e8fc8d8320f1a382b5e4f521b9bc50775cb8"
-  integrity sha512-iSd+O4OEYV/I36Zl8MdYJO0xD82wH528SaCieTVHhclgiYNe9y+yPKSwK+A7/WsmHL1EZ+pYUJBXWTL5qofksw==
-  dependencies:
-    traverse-chain "~0.1.0"
-
 flat-cache@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-3.0.4.tgz#61b0338302b2fe9f957dcc32fc2a87f1c3048b11"
@@ -3596,11 +3568,6 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o=
-
-traverse-chain@~0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/traverse-chain/-/traverse-chain-0.1.0.tgz#61dbc2d53b69ff6091a12a168fd7d433107e40f1"
-  integrity sha1-YdvC1Ttp/2CRoSoWj9fUMxB+QPE=
 
 tsconfig-paths@^3.11.0, tsconfig-paths@^3.9.0:
   version "3.14.1"
