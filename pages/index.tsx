@@ -52,6 +52,11 @@ const StakePage = () => {
       >
         <Heading>Your staking account</Heading>
         <Text>Below you can stake, unstake and collect rewards.</Text>
+        <Text>1. Deposit Tojis from Your Wallet to The Factory</Text>
+        <Text>2. /work to Stake your Tojis</Text>
+        <Text>3. Come back to claim your $Ijot</Text>
+        <Text>Refresh the page if things are not updating</Text>
+        <Text>Unstake and End cooldown to move Tojis back to your wallet when done</Text>
 
         {!publicKey ? (
           /** Render nothing if there is no wallet connected. */
@@ -104,10 +109,10 @@ const StakePage = () => {
                       sx={{
                         maxHeight: "2.4rem",
                       }}
-                      src="images/gemtransparent.gif"
+                      src="images/grey.png"
                     />
                     <Text>
-                      NFTs staked:&nbsp;
+                      Tojis staked:&nbsp;
                       {farmerAccount?.gemsStaked.toNumber()}
                     </Text>
                   </Flex>
@@ -116,7 +121,7 @@ const StakePage = () => {
                       textAlign: "center",
                     }}
                   >
-                    Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>
+                    Factory state: <b>{isLocked ? "locked" : "unlocked"}</b>
                     <br />
                   </Text>
                   <Text
@@ -149,7 +154,7 @@ const StakePage = () => {
                       !(farmerStatus === "unstaked" && farmerVaultNFTs?.length)
                     }
                   >
-                    Stake
+                    /work
                   </Button>
                   <Button
                     onClick={handleUnstakeButtonClick}
@@ -174,16 +179,16 @@ const StakePage = () => {
                         margin: "0 .4rem 0 .8rem",
                         maxHeight: "2.4rem",
                       }}
-                      src="images/icon-list-item.png"
+                      src="images/ijot.png"
                     />
                     {availableA ? (
-                      <b>{(availableA / 1000000000).toFixed(2)}</b>
+                      <b>{(availableA / 1).toFixed(2)}</b>
                     ) : (
                       0
                     )}
                   </Button>
                   <Button onClick={handleRefreshRewardsButtonClick}>
-                    Refresh
+                    Refresh Balance
                   </Button>
                 </Flex>
                 <Flex
@@ -215,7 +220,7 @@ const StakePage = () => {
             >
               <TabList>
                 <Tab>Your wallet</Tab>
-                <Tab>Your vault</Tab>
+                <Tab>The Factory</Tab>
               </TabList>
 
               <TabPanel>

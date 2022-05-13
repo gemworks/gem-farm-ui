@@ -22,12 +22,12 @@ export const getGradient = (rgb: string) => {
 const theme: Theme = {
   ...base,
   colors: {
-    background: "rgb(4, 4, 3)",
-    text: "rgb(226, 217, 211)",
-    primary: "rgb(48, 114, 180, .7)",
-    primaryGradient: getGradient("rgb(48, 114, 180, .7)"),
-    heading: "rgb(226, 217, 211)",
-    background2: "#1E1E24",
+    background: "rgb(0, 0, 0)",
+    text: "rgb(255, 255, 255)",
+    primary: "rgb(255, 255, 0, 1)",
+    primaryGradient: getGradient("rgb(155, 155, 0, .2)"),
+    heading: "rgb(226, 217, 0)",
+    background2: "rgb(0,0,0)",
     backgroundGradient: getGradient("rgb(4, 4, 3)"),
     // modes: {
     //   light: {
@@ -53,7 +53,7 @@ const theme: Theme = {
 
   fonts: {
     heading:
-      'AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
+      'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
   },
 
   buttons: {

@@ -37,19 +37,19 @@ const Header = ({ farmId, setFarmId }: Props) => {
             <Flex as="a" sx={{ alignItems: "center", flexDirection: "column" }}>
               <Flex sx={{ alignItems: "center" }}>
                 <Text as="h1" variant="headingSpecial" ml=".4rem">
-                  GEM
+                  TOJIBA
                 </Text>
 
                 <img
                   sx={{
-                    maxHeight: "4.8rem",
+                    maxHeight: "6rem",
                   }}
-                  src="/images/gemtransparent.gif"
+                  src="/images/400x600.gif"
                   alt="Gemworks"
                 />
 
                 <Text as="h1" variant="headingSpecial" ml=".4rem">
-                  FARM
+                  FACTORY
                 </Text>
               </Flex>
               {/* <Text
