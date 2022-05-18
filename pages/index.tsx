@@ -19,7 +19,6 @@ const StakePage = () => {
     farmerAccount,
     farmerVaultAccount,
     farmerStatus,
-    totalStakedCount,
     selectedWalletItems,
     isLocked,
     availableA,
