@@ -13,11 +13,19 @@ const WalletManager = () => {
         alignSelf: "stretch",
         justifyContent: "center",
         alignItems: "center",
-
+        ".wallet-adapter-button:not([disabled]):hover": {
+          backgroundColor: "#c7748e"
+        },
         ".wallet-adapter-dropdown": {
           display: "flex",
           justifyContent: "center"
-        }
+        },
+        ".wallet-adapter-dropdown-list": {
+          backgroundColor: "#c7748e"
+        },
+        ".wallet-adapter-dropdown-list-item:not([disabled]):hover": {
+          backgroundColor: "#836594"
+      }
       }}
     >
       <Flex
