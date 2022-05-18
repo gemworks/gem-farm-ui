@@ -18,6 +18,7 @@ const useGemFarmStaking = (farmId: string) => {
 
   const [farmAccount, setFarmAccount] = useState<any>(null) // @TODO add type to farmAccount
   const [farmerAccount, setFarmerAccount] = useState<any>(null) // @TODO add type to farmerAccount
+  const [totalStakedCount, setTotalStakedCount] = useState<any>(null)
   const [farmerStatus, setFarmerStatus] = useState<any>(null)
   const [farmerVaultAccount, setFarmerVaultAccount] = useState<any>(null)
   const [farmerVaultNFTs, setFarmerVaultNFTs] = useState<NFT[] | null>(null)
@@ -81,9 +82,11 @@ const useGemFarmStaking = (farmId: string) => {
 
           const farmAcc = await farmClient.fetchFarmAcc(new PublicKey(farmId))
           setFarmAccount(farmAcc as any)
-
+          console.log(farmAcc)
+          setTotalStakedCount(farmAcc as any)
           await fetchFarmerAccount(farmClient, bankClient)
         } catch (e) {
+          setTotalStakedCount(null)
           setFarmAccount(null)
           setFarmerAccount(null)
           console.error(e)
@@ -224,7 +227,7 @@ const useGemFarmStaking = (farmId: string) => {
     if (!gemFarmClient || !gemBankClient)
       throw new Error("No Gem Bank client has been initialized.")
 
-    setFeedbackStatus("Depositing Gems to the vault...")
+    setFeedbackStatus("Depositing Apes to the vault...")
     for (const nft of selectedWalletItems) {
       const creator = new PublicKey(
         nft.onchainMetadata.data.creators?.[0].address || ""
@@ -244,6 +247,7 @@ const useGemFarmStaking = (farmId: string) => {
 
     setSelectedVaultItems([])
     setSelectedWalletItems([])
+    window.location.reload();
   }
 
   const handleMoveToWalletButtonClick = async () => {
@@ -262,6 +266,7 @@ const useGemFarmStaking = (farmId: string) => {
 
     setSelectedVaultItems([])
     setSelectedWalletItems([])
+    window.location.reload(); //temp until another solution to refreshNFT loads
   }
 
   const handleStakeButtonClick = async () => {
@@ -294,6 +299,16 @@ const useGemFarmStaking = (farmId: string) => {
 
     setFeedbackStatus("")
     // selectedNFTs.value = [];
+
+    setFeedbackStatus("Ending Cooldown...")
+    await gemFarmClient.unstakeWallet(new PublicKey(farmId!))
+
+  
+
+    await fetchFarmerAccount(gemFarmClient, gemBankClient)
+
+
+
   }
 
   const handleClaimButtonClick = async () => {
@@ -349,6 +364,8 @@ const useGemFarmStaking = (farmId: string) => {
     // await refetchNFTs()
 
     setFeedbackStatus("")
+
+    return { walletNFTs }
   }
 
   const isLocked = farmerVaultAccount?.locked
@@ -364,6 +381,7 @@ const useGemFarmStaking = (farmId: string) => {
     farmerAccount,
     farmerVaultAccount,
     farmerStatus,
+    totalStakedCount,
     selectedWalletItems,
     isLocked,
     availableA,
