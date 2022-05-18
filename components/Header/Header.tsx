@@ -20,8 +20,9 @@ const Header = ({ farmId, setFarmId }: Props) => {
         position: "sticky",
         top: 0,
         zIndex: 9,
-        background: (theme) => theme.colors?.backgroundGradient,
-        borderBottom: "1px solid",
+        //background: (theme) => theme.colors?.backgroundGradient,
+        //remove gradient coloring from header
+        //borderBottom: "1px solid",
         borderColor: "background2",
       }}
     >
@@ -37,19 +38,19 @@ const Header = ({ farmId, setFarmId }: Props) => {
             <Flex as="a" sx={{ alignItems: "center", flexDirection: "column" }}>
               <Flex sx={{ alignItems: "center" }}>
                 <Text as="h1" variant="headingSpecial" ml=".4rem">
-                  GEM
-                </Text>
+                  
+                </Text> 
 
                 <img
                   sx={{
-                    maxHeight: "4.8rem",
+                    maxHeight: "6.5rem", //4.8rem
                   }}
                   src="/images/gemtransparent.gif"
                   alt="Gemworks"
                 />
 
                 <Text as="h1" variant="headingSpecial" ml=".4rem">
-                  FARM
+                  BASC
                 </Text>
               </Flex>
               {/* <Text
@@ -151,7 +152,7 @@ const Header = ({ farmId, setFarmId }: Props) => {
               }}
               onClick={() => setIsChangingFarmId((prev) => !prev)}
             >
-              (Change Farm ID)
+              
             </a>
 
             <WalletManager />
