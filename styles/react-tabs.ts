@@ -2,7 +2,7 @@ export const reactTabsStyles = {
   ".react-tabs": { WebkitTapHighlightColor: "transparent" },
   ".react-tabs__tab-list": {
     borderBottom: "1px solid ",
-    borderColor: "background2",
+    borderColor: "rgb(136 103 151)",
     margin: "0 0 10px",
     padding: "0",
     marginBottom: "1.6rem"
@@ -19,14 +19,14 @@ export const reactTabsStyles = {
   } as any,
   ".react-tabs__tab--selected": {
     backgroundColor: "primary",
-    borderColor: "background2",
+    borderColor: "rgb(136 103 151)",
     color: "text",
     borderRadius: "5px 5px 0 0"
   },
   ".react-tabs__tab--disabled": { color: "GrayText", cursor: "default" },
   ".react-tabs__tab:focus": {
-    boxShadow: "0 0 5px hsl(208, 99%, 50%)",
-    borderColor: "background2",
+    boxShadow: "0 0 5px hsl(270, 99%, 50%)", //208
+    borderColor: "rgb(101 78 129)",
     outline: "none"
   },
   ".react-tabs__tab:focus:after": {

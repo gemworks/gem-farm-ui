@@ -1,8 +1,6 @@
 import { Theme } from "theme-ui"
-
 import base from "./preset-base"
 import { reactTabsStyles } from "./react-tabs"
-
 export const getGradient = (rgb: string) => {
   /**
    * Split RGB. Example: rgb(226, 217, 211)
@@ -22,12 +20,15 @@ export const getGradient = (rgb: string) => {
 const theme: Theme = {
   ...base,
   colors: {
-    background: "rgb(4, 4, 3)",
+    //background: "rgb(4, 4, 3)",
+    background: "#c7748ef0",
     text: "rgb(226, 217, 211)",
-    primary: "rgb(48, 114, 180, .7)",
-    primaryGradient: getGradient("rgb(48, 114, 180, .7)"),
+    primary: "rgb(157, 98, 136, .7)",
+    //primary: "rgb(133 81 139, .7)",
+    primaryGradient: getGradient("rgb(133, 81, 139, .7)"),
     heading: "rgb(226, 217, 211)",
-    background2: "#1E1E24",
+    //background2: "#1E1E24",
+    background2: "rgb(226, 217, 211)",
     backgroundGradient: getGradient("rgb(4, 4, 3)"),
     // modes: {
     //   light: {
@@ -167,7 +168,9 @@ const theme: Theme = {
     headingSpecial: {
       color: "heading",
       lineHeight: "body",
-      fontSize: "2.2rem",
+      //fontSize: "2.2rem",
+      //increase font of header font
+      fontSize: "4rem",
       fontFamily:
         'PressStart2P-Regular, monospace, AvertaStd-Bold, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif',
       fontWeight: 900,
@@ -225,6 +228,10 @@ const theme: Theme = {
         minHeight: "100vh",
         color: "text",
         backgroundColor: "background",
+        backgroundImage: `url("https://raw.githubusercontent.com/Blackla6el/BASC/main/img/staking-bg.png")`,
+        backgroundPosition: "50%",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         transition: "all .125s linear",
       },
 
