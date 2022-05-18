@@ -19,6 +19,7 @@ const StakePage = () => {
     farmerAccount,
     farmerVaultAccount,
     farmerStatus,
+    totalStakedCount,
     selectedWalletItems,
     isLocked,
     availableA,
@@ -50,8 +51,8 @@ const StakePage = () => {
           padding: "0 1.6rem",
         }}
       >
-        <Heading>Your staking account</Heading>
-        <Text>Below you can stake, unstake and collect rewards.</Text>
+        {/**<Heading><b>{(totalStakedCount?.gemsStaked.toNumber()/6001).toFixed(1)}</b>% Staked: <b>{totalStakedCount?.gemsStaked.toNumber()}</b>/6001</Heading>*/}
+        <Text></Text>
 
         {!publicKey ? (
           /** Render nothing if there is no wallet connected. */
@@ -59,9 +60,10 @@ const StakePage = () => {
             sx={{
               textAlign: "center",
               margin: "3.2rem 0",
+              fontSize: "2rem",
             }}
           >
-            Connect your wallet first.
+            Connect your wallet.
           </Text>
         ) : !farmerAccount ? (
           // <LoadingIcon
@@ -107,7 +109,7 @@ const StakePage = () => {
                       src="images/gemtransparent.gif"
                     />
                     <Text>
-                      NFTs staked:&nbsp;
+                      Apes staked:&nbsp;
                       {farmerAccount?.gemsStaked.toNumber()}
                     </Text>
                   </Flex>
@@ -115,7 +117,8 @@ const StakePage = () => {
                     sx={{
                       textAlign: "center",
                     }}
-                  >
+                  > 
+                    {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
                     Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>
                     <br />
                   </Text>
@@ -214,8 +217,8 @@ const StakePage = () => {
               }}
             >
               <TabList>
-                <Tab>Your wallet</Tab>
-                <Tab>Your vault</Tab>
+                <Tab>Wallet</Tab>
+                <Tab>Vault</Tab>
               </TabList>
 
               <TabPanel>
@@ -279,7 +282,7 @@ const StakePage = () => {
                           }}
                           variant="small"
                         >
-                          Select NFTs to move them to your Vault.
+                          Select Apes to stake.
                         </Text>
                       ) : null}
                       <Text>
@@ -304,7 +307,7 @@ const StakePage = () => {
                         alignSelf: "stretch",
                       }}
                     >
-                      <Text>There are no NFTs on your wallet.</Text>
+                      <Text>There are no Apes in your wallet.</Text>
                     </Flex>
                   )
                 ) : /** No walletNFTs and public key, means it is loading */
@@ -398,7 +401,7 @@ const StakePage = () => {
                               }}
                               variant="small"
                             >
-                              Select NFTs to withdraw them to your wallet.
+                              Select Apes to withdraw them to your wallet.
                             </Text>
                           ) : null}
 
@@ -424,7 +427,7 @@ const StakePage = () => {
                             alignSelf: "stretch",
                           }}
                         >
-                          <Text>There are no NFTs on your vault.</Text>
+                          <Text>You have no Apes staked.</Text>
                         </Flex>
                       )
                     ) : /** No vaultNFTs and public key, means it is loading */
