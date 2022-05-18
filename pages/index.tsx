@@ -104,11 +104,16 @@ const StakePage = () => {
                   >
                     <img
                       sx={{
-                        maxHeight: "2.4rem",
+                        maxHeight: "4rem",
                       }}
                       src="images/gemtransparent.gif"
                     />
-                    <Text>
+                    <Text
+                    sx={{
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
+                    >
                       Apes staked:&nbsp;
                       {farmerAccount?.gemsStaked.toNumber()}
                     </Text>
@@ -116,6 +121,7 @@ const StakePage = () => {
                   <Text
                     sx={{
                       textAlign: "center",
+                      fontSize: "2rem",
                     }}
                   > 
                     {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
@@ -125,6 +131,7 @@ const StakePage = () => {
                   <Text
                     sx={{
                       textAlign: "center",
+                      fontSize: "2rem",
                     }}
                   >
                     Account status: <b>{farmerStatus}</b>
@@ -214,6 +221,7 @@ const StakePage = () => {
                 margin: "3.2rem 0",
                 alignSelf: "stretch",
                 minHeight: "48rem",
+                fontSize: "2rem",
               }}
             >
               <TabList>
@@ -279,6 +287,7 @@ const StakePage = () => {
                         <Text
                           sx={{
                             margin: "3.2rem 0 .8rem 0",
+                            fontSize: "2rem",
                           }}
                           variant="small"
                         >
@@ -305,6 +314,7 @@ const StakePage = () => {
                       sx={{
                         justifyContent: "center",
                         alignSelf: "stretch",
+                        fontSize: "2rem",
                       }}
                     >
                       <Text>There are no Apes in your wallet.</Text>
@@ -316,6 +326,7 @@ const StakePage = () => {
                     sx={{
                       justifyContent: "center",
                       alignSelf: "stretch",
+                      fontSize: "2rem",
                     }}
                   >
                     <Spinner variant="styles.spinnerLarge" />
