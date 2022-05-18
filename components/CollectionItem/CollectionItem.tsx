@@ -151,6 +151,7 @@ const CollectionItem = (props: Props) => {
           textOverflow: "ellipsis",
           padding: "0 .8rem",
           mt: ".8rem",
+          fontSize: "0rem",
         }}
       >
         {externalMetadata.name}
