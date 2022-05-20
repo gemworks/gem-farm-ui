@@ -19,6 +19,7 @@ const StakePage = () => {
     farmerAccount,
     farmerVaultAccount,
     farmerStatus,
+    totalStakedCount,
     selectedWalletItems,
     isLocked,
     availableA,
@@ -94,6 +95,16 @@ const StakePage = () => {
                     margin: "1.6rem 0",
                   }}
                 >
+                  <Text
+                sx={{
+                  textAlign: "center",
+                  fontSize: "2rem",
+                }}
+              > 
+                {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
+                <b>{(totalStakedCount?.gemsStaked.toNumber()/6001).toFixed(1)}</b>% Staked: <b>{totalStakedCount?.gemsStaked.toNumber()}</b>/6001
+                <br />
+              </Text>
                   <Flex
                     sx={{
                       gap: ".4rem",
