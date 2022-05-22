@@ -1,7 +1,7 @@
 export const reactTabsStyles = {
   ".react-tabs": { WebkitTapHighlightColor: "transparent" },
   ".react-tabs__tab-list": {
-    borderBottom: "1px solid ",
+    //borderBottom: "1px solid ",
     borderColor: "rgb(136 103 151)",
     margin: "0 0 10px",
     padding: "0",
@@ -9,7 +9,7 @@ export const reactTabsStyles = {
   },
   ".react-tabs__tab": {
     display: "inline-block",
-    border: "1px solid transparent",
+    //border: "1px solid transparent",
     borderBottom: "none",
     bottom: "-1px",
     position: "relative",
@@ -21,13 +21,14 @@ export const reactTabsStyles = {
     backgroundColor: "primary",
     borderColor: "rgb(136 103 151)",
     color: "text",
-    borderRadius: "5px 5px 0 0"
+    borderRadius: "15px 15px 15px 15px"
   },
   ".react-tabs__tab--disabled": { color: "GrayText", cursor: "default" },
   ".react-tabs__tab:focus": {
-    boxShadow: "0 0 5px hsl(270, 99%, 50%)", //208
+    boxShadow: "none", //"0 0 3px hsl(270, 99%, 50%)", //208
     borderColor: "rgb(101 78 129)",
-    outline: "none"
+    outline: "none",
+    
   },
   ".react-tabs__tab:focus:after": {
     content: '""',
@@ -36,7 +37,7 @@ export const reactTabsStyles = {
     left: "-4px",
     right: "-4px",
     bottom: "-5px",
-    backgroundColor: "primary"
+    backgroundColor: "" // remove underline on focus
   } as any,
   ".react-tabs__tab-panel": { display: "none" },
   ".react-tabs__tab-panel--selected": { display: "block" }

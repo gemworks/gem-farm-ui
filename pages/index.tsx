@@ -81,7 +81,7 @@ const StakePage = () => {
             }}
             onClick={handleInitStakingButtonClick}
           >
-            Init staking account
+            Create staking account
           </Button>
         ) : (
           <>
@@ -89,20 +89,31 @@ const StakePage = () => {
             {/** Farmer account info section */}
             {farmerAccount?.identity ? (
               <>
+
                 <Flex
                   sx={{
                     flexDirection: "column",
                     margin: "1.6rem 0",
                   }}
-                >
-                  <Text
+                >                  
+                <Text
+                sx={{
+                  textAlign: "center",
+                  fontSize: "2.5rem",
+                }}
+              > 
+                {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
+                <b>{(totalStakedCount?.gemsStaked.toNumber()/6001).toFixed(1)}% Staked {totalStakedCount?.gemsStaked.toNumber()}/6001 </b>
+                <br />
+              </Text>
+              <Text
                 sx={{
                   textAlign: "center",
                   fontSize: "2rem",
                 }}
               > 
                 {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
-                <b>{(totalStakedCount?.gemsStaked.toNumber()/6001).toFixed(1)}</b>% Staked: <b>{totalStakedCount?.gemsStaked.toNumber()}</b>/6001
+                <b></b>
                 <br />
               </Text>
                   <Flex
@@ -124,8 +135,8 @@ const StakePage = () => {
                       fontSize: "2rem",
                     }}
                     >
-                      Apes staked:&nbsp;
-                      {farmerAccount?.gemsStaked.toNumber()}
+                      <b>STAKED:&nbsp;
+                      {farmerAccount?.gemsStaked.toNumber()}</b>
                     </Text>
                   </Flex>
                   <Text
@@ -133,9 +144,18 @@ const StakePage = () => {
                       textAlign: "center",
                       fontSize: "2rem",
                     }}
+                  >
+                    <b>{(availableA / 1000000000).toFixed(2)} DAZE earned</b>
+                    <br />
+                  </Text>
+                  <Text
+                    sx={{
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
                   > 
                     {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
-                    Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>
+                    {/**Vault: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
                     <br />
                   </Text>
                   <Text
@@ -144,10 +164,12 @@ const StakePage = () => {
                       fontSize: "2rem",
                     }}
                   >
-                    Account status: <b>{farmerStatus}</b>
+                    {/**Status: <b>{farmerStatus}</b>*/}
                     <br />
                   </Text>
+                  
                 </Flex>
+                
 
                 <Flex
                   sx={{
@@ -157,7 +179,6 @@ const StakePage = () => {
                     alignItems: "center",
                     alignSelf: "stretch",
                     justifyContent: "center",
-
                     "@media (min-width: 768px": {
                       flexDirection: "row",
                     },
@@ -188,7 +209,7 @@ const StakePage = () => {
                     onClick={handleClaimButtonClick}
                     disabled={!Number(availableA)}
                   >
-                    Claim{" "}
+                    Claim{/** {" "}
                     <img
                       sx={{
                         margin: "0 .4rem 0 .8rem",
@@ -200,7 +221,7 @@ const StakePage = () => {
                       <b>{(availableA / 1000000000).toFixed(2)}</b>
                     ) : (
                       0
-                    )}
+                    )}*/}
                   </Button>
                   <Button onClick={handleRefreshRewardsButtonClick}>
                     Refresh
@@ -301,7 +322,7 @@ const StakePage = () => {
                           }}
                           variant="small"
                         >
-                          Select Apes to stake.
+                          Select Apes to deposit.
                         </Text>
                       ) : null}
                       <Text>
@@ -419,6 +440,7 @@ const StakePage = () => {
                             <Text
                               sx={{
                                 margin: "3.2rem 0 .8rem 0",
+                                fontSize: "2rem",
                               }}
                               variant="small"
                             >

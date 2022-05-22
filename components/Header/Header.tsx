@@ -50,7 +50,7 @@ const Header = ({ farmId, setFarmId }: Props) => {
                 />
 
                 <Text as="h1" variant="headingSpecial" ml=".4rem">
-                  BASC
+                  
                 </Text>
               </Flex>
               {/* <Text
@@ -68,9 +68,9 @@ const Header = ({ farmId, setFarmId }: Props) => {
             sx={{
               marginRight: "auto",
             }}
-          >
+          >{/** 
             &nbsp;&nbsp;&nbsp;&#8226;&nbsp;
-            {process.env.NEXT_PUBLIC_CONNECTION_NETWORK}
+            {process.env.NEXT_PUBLIC_CONNECTION_NETWORK}*/}
           </Text>
 
           <Flex

@@ -113,7 +113,7 @@ const theme: Theme = {
       background: "linear-gradient(45deg, rgb(48, 114, 180, .7), grey)",
       borderRadius: ".4rem",
       boxShadow: "0 0 5px 2px #00000054",
-      fontSize: "1.6rem",
+      fontSize: "1.8rem",
       padding: "1.2rem 3.2rem",
       textTransform: "capitalize",
       fontWeight: 500,
@@ -202,7 +202,7 @@ const theme: Theme = {
     small: {
       color: "text",
       lineHeight: "body",
-      fontSize: "1.2rem",
+      fontSize: "1.4rem",
     },
     xsmall: {
       color: "text",
@@ -228,7 +228,7 @@ const theme: Theme = {
         minHeight: "100vh",
         color: "text",
         backgroundColor: "background",
-        backgroundImage: `url("https://raw.githubusercontent.com/Blackla6el/BASC/main/img/staking-bg.png")`,
+        backgroundImage: `url("https://raw.githubusercontent.com/BASCDAO/basc-gem-farm-ui/main/public/images/stakingbg.png")`,
         backgroundPosition: "50%",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",

@@ -254,7 +254,7 @@ const useGemFarmStaking = (farmId: string) => {
     if (!gemFarmClient || !gemBankClient)
       throw new Error("No Gem Bank client has been initialized.")
 
-    setFeedbackStatus("Withdrawing Gems...")
+    setFeedbackStatus("Withdrawing Apes...")
     for (const nft of selectedVaultItems) {
       await withdrawGem(new PublicKey(nft.onchainMetadata.mint))
     }
