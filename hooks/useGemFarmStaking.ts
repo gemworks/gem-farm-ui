@@ -300,16 +300,6 @@ const useGemFarmStaking = (farmId: string) => {
 
     setFeedbackStatus("")
     // selectedNFTs.value = [];
-
-    setFeedbackStatus("Ending Cooldown...")
-    await gemFarmClient.unstakeWallet(new PublicKey(farmId!))
-
-  
-
-    await fetchFarmerAccount(gemFarmClient, gemBankClient)
-
-
-
   }
 
   const handleClaimButtonClick = async () => {
