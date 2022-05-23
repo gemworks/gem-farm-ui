@@ -208,7 +208,7 @@ const StakePage = () => {
                   </Button>
                   <Button
                     onClick={handleClaimButtonClick}
-                    disabled={!Number(availableA)}
+                    disabled={!Number(availableB)}
                   >
                     Claim{/** {" "}
                     <img
