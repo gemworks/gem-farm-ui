@@ -116,8 +116,7 @@ const useGemFarmStaking = (farmId: string) => {
            * Fetch GDR (Gem Deposit Receipts) from the farmer vault
            */
           const foundGDRs = await gemBankClient.fetchAllGdrPDAs(
-            farmerAccount.vault,
-            console.log(farmerAccount)
+            farmerAccount.vault
           )
 
           const mints = foundGDRs.map((gdr: any) => {
@@ -359,7 +358,7 @@ const useGemFarmStaking = (farmId: string) => {
       new PublicKey(farmId),
       farmerAccount.identity
     )
-
+    console.log(farmerAccount)
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
