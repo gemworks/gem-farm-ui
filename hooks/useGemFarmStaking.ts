@@ -83,6 +83,7 @@ const useGemFarmStaking = (farmId: string) => {
           const farmAcc = await farmClient.fetchFarmAcc(new PublicKey(farmId))
           setFarmAccount(farmAcc as any)
           console.log(farmAcc)
+          console.log(farmerAccount)
           setTotalStakedCount(farmAcc as any)
           await fetchFarmerAccount(farmClient, bankClient)
         } catch (e) {
