@@ -284,6 +284,8 @@ const useGemFarmStaking = (farmId: string) => {
 
     setFeedbackStatus("")
     // selectedNFTs.value = [];
+
+    window.location.reload();
   }
 
   const handleUnstakeButtonClick = async () => {
@@ -300,6 +302,8 @@ const useGemFarmStaking = (farmId: string) => {
 
     setFeedbackStatus("")
     // selectedNFTs.value = [];
+
+    window.location.reload();
   }
 
   const handleClaimButtonClick = async () => {
