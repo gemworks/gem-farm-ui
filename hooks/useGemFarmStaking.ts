@@ -45,6 +45,7 @@ const useGemFarmStaking = (farmId: string) => {
 
         const farmerAcc = await farmClient.fetchFarmerAcc(farmerPDA)
         setFarmerAccount(farmerAcc)
+        
 
         const vaultAcc = await bankClient.fetchVaultAcc(farmerAcc.vault)
         setFarmerVaultAccount(vaultAcc)
@@ -83,7 +84,6 @@ const useGemFarmStaking = (farmId: string) => {
           const farmAcc = await farmClient.fetchFarmAcc(new PublicKey(farmId))
           setFarmAccount(farmAcc as any)
           console.log(farmAcc)
-          console.log(farmerAccount)
           setTotalStakedCount(farmAcc as any)
           await fetchFarmerAccount(farmClient, bankClient)
         } catch (e) {
@@ -116,7 +116,8 @@ const useGemFarmStaking = (farmId: string) => {
            * Fetch GDR (Gem Deposit Receipts) from the farmer vault
            */
           const foundGDRs = await gemBankClient.fetchAllGdrPDAs(
-            farmerAccount.vault
+            farmerAccount.vault,
+            console.log(farmerAccount)
           )
 
           const mints = foundGDRs.map((gdr: any) => {
