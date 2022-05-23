@@ -137,9 +137,10 @@ const CollectionItem = (props: Props) => {
       </Flex>
       <img
         sx={{
-          borderRadius: ".4rem",
+          borderRadius: "2.0rem",
           transition: "all .125s linear",
           opacity: isDropdownActive ? 0.7 : 1,
+          
         }}
         src={externalMetadata.image}
       />
