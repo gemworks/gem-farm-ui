@@ -390,8 +390,8 @@ const useGemFarmStaking = (farmId: string) => {
     : null
 
 
-    const farmerReward = farmerAccount?.rewardA;
-    const farmRewards = farmAccount?.rewardA;
+    const farmerReward = farmerAccount?.rewardB;
+    const farmRewards = farmAccount?.rewardB;
     const recentRewards = parseInt(
       farmerReward?.accruedReward.sub(farmerReward?.paidOutReward)
     );
@@ -399,13 +399,14 @@ const useGemFarmStaking = (farmId: string) => {
     const lastUpdated = parseInt(farmerReward?.fixedRate.lastUpdatedTs);
     const denominator = parseInt(farmRewards?.fixedRate.schedule.denominator);
     const baseRate = parseInt(farmRewards?.fixedRate.schedule.baseRate);
-  
-    const gemsStaked = parseInt(farmAccount?.gemsStaked);
+  //farmAccount?.gemsStaked
+    const gemsStaked = parseInt(farmerAccount?.gemsStaked);
     const [accruedReward, setAccruedReward] = useState(0);
 
     let rewardsUpdate = false;
   
     useEffect(() => {
+      if (connection && wallet?.publicKey && farmerAccount && farmAccount) {
       setAccruedReward(
         Math.floor(
           recentRewards +
@@ -419,6 +420,7 @@ const useGemFarmStaking = (farmId: string) => {
         );
         rewardsUpdate = true;
       }
+    }
     }, [farmerAccount, farmAccount]);
 
   return {
