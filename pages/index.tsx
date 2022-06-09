@@ -20,10 +20,12 @@ const StakePage = () => {
     farmerVaultAccount,
     farmerStatus,
     totalStakedCount,
+    testStakedCount,
     selectedWalletItems,
     isLocked,
     availableA,
     availableB,
+    accruedReward,
     feedbackStatus,
     handleStakeButtonClick,
     handleUnstakeButtonClick,
@@ -104,7 +106,7 @@ const StakePage = () => {
                 }}
               > 
                 {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
-                <b>{(totalStakedCount?.gemsStaked.toNumber()/6001).toFixed(1)}% Staked {totalStakedCount?.gemsStaked.toNumber()}/6001 </b>
+                <b>{(testStakedCount/6001).toFixed(2)}% Staked {testStakedCount}/6001 : {accruedReward.toFixed(9)}</b>
                 <br />
               </Text>
               <Text

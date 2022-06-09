@@ -57,6 +57,22 @@ export class GemBank extends GemBankClient {
     )
   }
 
+  async fetchAllVaultPDAs(bank?: PublicKey) {
+    const filter = bank
+      ? [
+          {
+            memcmp: {
+              offset: 8, //need to prepend 8 bytes for anchor's disc
+              bytes: bank.toBase58(),
+            },
+          },
+        ]
+      : [];
+    const pdas = await this.bankProgram.account.vault.all(filter);
+    console.log(`found a total of ${pdas.length} vault PDAs`);
+    return pdas;
+  } 
+
   async setVaultLockWallet(
     bank: PublicKey,
     vault: PublicKey,

@@ -18,6 +18,7 @@ const useGemFarmStaking = (farmId: string) => {
 
   const [farmAccount, setFarmAccount] = useState<any>(null) // @TODO add type to farmAccount
   const [farmerAccount, setFarmerAccount] = useState<any>(null) // @TODO add type to farmerAccount
+  const [testStakedCount, setTestStakedCount] = useState<any>(null)
   const [totalStakedCount, setTotalStakedCount] = useState<any>(null)
   const [farmerStatus, setFarmerStatus] = useState<any>(null)
   const [farmerVaultAccount, setFarmerVaultAccount] = useState<any>(null)
@@ -83,6 +84,17 @@ const useGemFarmStaking = (farmId: string) => {
 
           const farmAcc = await farmClient.fetchFarmAcc(new PublicKey(farmId))
           setFarmAccount(farmAcc as any)
+          
+          const allVaults = await bankClient.fetchAllVaultPDAs(new PublicKey("i7Z46YuSiej4LMYRHvhffH5MmuteuHUjFaVVqVfG5TP")); 
+          let gemCount = 0;
+
+          console.log(allVaults)
+          for(var vault of allVaults) {
+              gemCount += +vault.account.gemCount;}
+   
+          setTestStakedCount(gemCount as number)
+
+          
           console.log(farmAcc)
           setTotalStakedCount(farmAcc as any)
           await fetchFarmerAccount(farmClient, bankClient)
@@ -377,16 +389,50 @@ const useGemFarmStaking = (farmId: string) => {
         .toString()
     : null
 
+
+    const farmerReward = farmerAccount?.rewardA;
+    const farmRewards = farmAccount?.rewardA;
+    const recentRewards = parseInt(
+      farmerReward?.accruedReward.sub(farmerReward?.paidOutReward)
+    );
+    const currentDate = new Date().getTime() / 1000;
+    const lastUpdated = parseInt(farmerReward?.fixedRate.lastUpdatedTs);
+    const denominator = parseInt(farmRewards?.fixedRate.schedule.denominator);
+    const baseRate = parseInt(farmRewards?.fixedRate.schedule.baseRate);
+  
+    const gemsStaked = parseInt(farmAccount?.gemsStaked);
+    const [accruedReward, setAccruedReward] = useState(0);
+
+    let rewardsUpdate = false;
+  
+    useEffect(() => {
+      setAccruedReward(
+        Math.floor(
+          recentRewards +
+            ((currentDate - lastUpdated) / denominator) * (baseRate * gemsStaked)
+        )
+      );
+      if (!rewardsUpdate) {
+        setInterval(
+          () => setAccruedReward((prev) => prev && prev + baseRate * gemsStaked),
+          denominator * 1000
+        );
+        rewardsUpdate = true;
+      }
+    }, [farmerAccount, farmAccount]);
+
   return {
     walletNFTs,
     farmerAccount,
     farmerVaultAccount,
     farmerStatus,
     totalStakedCount,
+    testStakedCount,
     selectedWalletItems,
     isLocked,
     availableA,
     availableB,
+    accruedReward,
     feedbackStatus,
     handleStakeButtonClick,
     handleUnstakeButtonClick,
