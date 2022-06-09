@@ -148,7 +148,8 @@ const StakePage = () => {
                       fontSize: "2rem",
                     }}
                   >
-                    <b>{(availableB / 1000000000).toFixed(2)} DAZE earned</b>
+                    {/**{(availableB / 1000000000).toFixed(9)} */}
+                    <b>{(accruedReward/ 1000000000).toFixed(3)} DAZE earned</b>
                     <br />
                   </Text>
                   <Text
