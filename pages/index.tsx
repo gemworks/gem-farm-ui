@@ -32,6 +32,7 @@ const StakePage = () => {
     handleClaimButtonClick,
     handleWalletItemClick,
     handleMoveToVaultButtonClick,
+    handleFlashDepositButtonClick,
     farmerVaultNFTs,
     selectedVaultItems,
     handleMoveToWalletButtonClick,
@@ -227,9 +228,11 @@ const StakePage = () => {
                       0
                     )}*/}
                   </Button>
+                  {/**
                   <Button onClick={handleRefreshRewardsButtonClick}>
                     Refresh
                   </Button>
+                  */}
                 </Flex>
                 <Flex
                   sx={{
@@ -303,7 +306,7 @@ const StakePage = () => {
                               key={item.onchainMetadata.mint}
                               item={item}
                               onClick={
-                                !isLocked ? handleWalletItemClick : () => true
+                               /* !isLocked ? handleWalletItemClick : () => true*/
                               }
                               sx={{
                                 maxWidth: "16rem",
@@ -342,6 +345,30 @@ const StakePage = () => {
                           </Button>
                         ) : null}
                       </Text>
+                      {walletNFTs.length && isLocked ? (
+                        <Text
+                          sx={{
+                            margin: "3.2rem 0 .8rem 0",
+                            fontSize: "2rem",
+                          }}
+                          variant="small"
+                        >
+                          Select Apes to flash deposit.
+                        </Text>
+                      ) : null}
+                      <Text>
+                        {/* Selected:{" "}
+                    {selectedWalletItems && selectedWalletItems.length
+                      ? selectedWalletItems
+                          .map((NFT) => NFT.onchainMetadata.metaData.data.name)
+                          .join(", ")
+                      : null} */}
+                        {selectedWalletItems?.length && isLocked ? (
+                          <Button onClick={handleFlashDepositButtonClick}>
+                            Flash deposit selected
+                          </Button>
+                        ) : null}
+                      </Text>                     
                     </Flex>
                   ) : (
                     /** walletNFTs fetched but array is empty, means current wallet has no NFT. */

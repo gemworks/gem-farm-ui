@@ -236,6 +236,28 @@ const useGemFarmStaking = (farmId: string) => {
     return txSig
   }
 
+  const flashDeposit = async (
+    mint: PublicKey,
+    creator: PublicKey,
+    source: PublicKey
+  ) => {
+    if (!gemFarmClient || !gemBankClient)
+      throw new Error("No Gem Bank client has been initialized.")
+
+    const { txSig } = await gemFarmClient.flashDepositWallet(
+      new PublicKey("HMLyekB8ZicVoePfE8xJi18NscuTFhj5TyJALhWYAxQf"),
+      "1",
+      mint,
+      source,
+      creator
+    )
+
+    await connection.confirmTransaction(txSig)
+    console.log("[Staking Hook] deposit done", txSig)
+
+    return txSig
+  }
+
   const handleMoveToVaultButtonClick = async () => {
     if (!gemFarmClient || !gemBankClient)
       throw new Error("No Gem Bank client has been initialized.")
@@ -262,6 +284,40 @@ const useGemFarmStaking = (farmId: string) => {
     setSelectedWalletItems([])
     window.location.reload();
   }
+
+  const handleFlashDepositButtonClick = async () => {
+    if (!gemFarmClient || !gemBankClient)
+      throw new Error("No Gem Bank client has been initialized.")
+
+    setFeedbackStatus("Flash depositing Apes to the vault...")
+    for (const nft of selectedWalletItems) {
+      const creator = new PublicKey(
+        nft.onchainMetadata.data.creators?.[0].address || ""
+      )
+
+      await flashDeposit(
+        new PublicKey(nft.onchainMetadata.mint),
+        creator,
+        nft.pubkey
+      )
+  
+      await fetchFarmerAccount(gemFarmClient, gemBankClient)
+      // await refetchNFTs()
+  
+      setFeedbackStatus("")
+      // await fetchFarmer();
+
+    }
+
+    await fetchFarmerAccount(gemFarmClient, gemBankClient)
+    // await refetchNFTs()
+
+    setFeedbackStatus("")
+
+    setSelectedVaultItems([])
+    setSelectedWalletItems([])
+    window.location.reload();
+  }  
 
   const handleMoveToWalletButtonClick = async () => {
     if (!gemFarmClient || !gemBankClient)
@@ -442,6 +498,7 @@ const useGemFarmStaking = (farmId: string) => {
     handleWalletItemClick,
     handleMoveToVaultButtonClick,
     handleInitStakingButtonClick,
+    handleFlashDepositButtonClick,
     farmerVaultNFTs,
     selectedVaultItems,
     handleMoveToWalletButtonClick,

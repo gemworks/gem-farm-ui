@@ -5,7 +5,10 @@ export const reactTabsStyles = {
     borderColor: "rgb(136 103 151)",
     margin: "0 0 10px",
     padding: "0",
-    marginBottom: "1.6rem"
+    marginBottom: "1.6rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   ".react-tabs__tab": {
     display: "inline-block",
