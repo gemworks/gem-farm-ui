@@ -313,7 +313,7 @@ const StakePage = () => {
                                 "> img": {
                                   border: "3px solid transparent",
                                   borderColor: isSelected
-                                    ? "primary"
+                                    ? "rgb(0 0 0 / 55%)"
                                     : "transparent",
                                 },
                               }}
@@ -459,7 +459,7 @@ const StakePage = () => {
                                     "> img": {
                                       border: "3px solid transparent",
                                       borderColor: isSelected
-                                        ? "primary"
+                                        ? "rgb(0 0 0 / 55%)"
                                         : "transparent",
                                     },
                                   }}
