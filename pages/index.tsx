@@ -306,7 +306,8 @@ const StakePage = () => {
                               key={item.onchainMetadata.mint}
                               item={item}
                               onClick={
-                               /* !isLocked ? handleWalletItemClick : () => true*/
+                                handleWalletItemClick
+                               /*!isLocked ? handleWalletItemClick : () => true*/
                               }
                               sx={{
                                 maxWidth: "16rem",
