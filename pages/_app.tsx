@@ -30,6 +30,8 @@ function App(props: AppProps) {
       <Head>
         {/** Load font styles directly on the document to prevent flashes */}
         <link href="/fonts/fonts.css" rel="stylesheet" />
+        <link rel="shortcut icon" href="images/favicon.png"/>
+        <title>BASC Vault</title>
       </Head>
 
       <WalletProvider>

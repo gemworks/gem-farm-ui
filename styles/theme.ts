@@ -1,6 +1,7 @@
 import { Theme } from "theme-ui"
 import base from "./preset-base"
 import { reactTabsStyles } from "./react-tabs"
+
 export const getGradient = (rgb: string) => {
   /**
    * Split RGB. Example: rgb(226, 217, 211)
@@ -11,36 +12,21 @@ export const getGradient = (rgb: string) => {
   return `linear-gradient(225deg, ${rgb} 0%, rgba(${splitted[0]}, ${splitted[1]}, ${splitted[2]}, 0.7) 50%, rgba(${splitted[0]}, ${splitted[1]}, ${splitted[2]}, 0.5) 100%)`
 }
 
-/**
- * rgb(84, 42, 147)
- * rgb(48, 114, 180, .7)
- *
- */
-
 const theme: Theme = {
   ...base,
   colors: {
-    //background: "rgb(4, 4, 3)",
-    background: "#c7748ef0",
+    //background: "#c7748ef0",
+    background: "rgb(0 0 0 / 89%)",
     text: "rgb(226, 217, 211)",
-    primary: "rgb(157, 98, 136, .7)",
+    //primary: "rgb(157, 98, 136, .7)",
+    primary: "rgb(60 60 60 / 70%)",
     //primary: "rgb(133 81 139, .7)",
-    primaryGradient: getGradient("rgb(133, 81, 139, .7)"),
+    //primaryGradient: getGradient("rgb(133, 81, 139, .7)"),
+    primaryGradient: getGradient("rgb(41, 39, 42, .7)"),
     heading: "rgb(226, 217, 211)",
-    //background2: "#1E1E24",
     background2: "rgb(226, 217, 211)",
-    backgroundGradient: getGradient("rgb(4, 4, 3)"),
-    // modes: {
-    //   light: {
-    //     background: "rgb(226, 217, 211)",
-    //     text: "rgb(4, 4, 3)",
-    //     primary: "rgb(48, 114, 180, .7)",
-    //     primaryGradient: getGradient("rgb(48, 114, 180, .7)"),
-    //     heading: "#1E1E24",
-    //     background2: "#1E1E24",
-    //     backgroundGradient: getGradient("rgb(226, 217, 211)")
-    //   }
-    // }
+    //backgroundGradient: getGradient("rgb(4, 4, 3)"),
+    backgroundGradient: getGradient("rgb(133, 81, 139, .7)"),
     error: "#B00020",
     success: "#5cb85c",
   },
@@ -228,8 +214,9 @@ const theme: Theme = {
         minHeight: "100vh",
         color: "text",
         backgroundColor: "background",
-        backgroundImage: `url("https://raw.githubusercontent.com/BASCDAO/basc-gem-farm-ui/main/public/images/stakingbg.png")`,
-        backgroundPosition: "50%",
+        backgroundImage: `url("./images/background.jpeg")`,
+        boxShadow: "inset 0 0 0 1000px rgba(0,0,0,.4)",
+        backgroundPosition: "63%",
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         transition: "all .125s linear",

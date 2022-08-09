@@ -94,6 +94,82 @@ const StakePage = () => {
             {farmerAccount?.identity ? (
               <>
 
+<Flex
+                  sx={{
+                    flexDirection: "column",
+                    margin: "1.6rem 0",
+                  }}
+                >                  
+                <Text
+                sx={{
+                  textAlign: "center",
+                  fontSize: "2.5rem",
+                }}
+              > 
+                {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>
+                 {(testStakedCount/6001).toFixed(2)}%
+                */}
+                <b>Total Vaulted : {testStakedCount}/6001</b>
+                <br />
+              </Text>
+              <Text
+                sx={{
+                  textAlign: "center",
+                  fontSize: "2rem",
+                }}
+              > 
+                {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
+                <b></b>
+                <br />
+              </Text>
+              <Flex
+                    sx={{
+                      gap: ".4rem",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      sx={{
+                        maxHeight: "4rem",
+                      }}
+                      src="images/gemtransparent.gif"
+                    />
+                    <Text
+                    sx={{
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
+                    >
+                      <b>Vaulted:&nbsp;
+                      
+                      {farmerVaultNFTs === null
+                      ? 0
+                      : farmerVaultNFTs.length.toString()
+                      }</b>
+                    </Text>
+                  </Flex>
+                  <Text
+                    sx={{
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
+                  > 
+                    {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
+                    {/**Vault: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
+                    <br />
+                  </Text>
+                  <Text
+                    sx={{
+                      textAlign: "center",
+                      fontSize: "2rem",
+                    }}
+                  >
+                    {/**Status: <b>{farmerStatus}</b>*/}
+                    <br />
+                  </Text>
+                </Flex>              
+{/** Remove for staking
                 <Flex
                   sx={{
                     flexDirection: "column",
@@ -106,7 +182,6 @@ const StakePage = () => {
                   fontSize: "2.5rem",
                 }}
               > 
-                {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
                 <b>{(testStakedCount/6001).toFixed(2)}% Staked {testStakedCount}/6001</b>
                 <br />
               </Text>
@@ -116,7 +191,6 @@ const StakePage = () => {
                   fontSize: "2rem",
                 }}
               > 
-                {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
                 <b></b>
                 <br />
               </Text>
@@ -149,7 +223,6 @@ const StakePage = () => {
                       fontSize: "2rem",
                     }}
                   >
-                    {/**{(availableB / 1000000000).toFixed(9)} */}
                     <b>{(accruedReward/ 1000000000).toFixed(3)} DAZE earned</b>
                     <br />
                   </Text>
@@ -159,8 +232,6 @@ const StakePage = () => {
                       fontSize: "2rem",
                     }}
                   > 
-                    {/**Vault state: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
-                    {/**Vault: <b>{isLocked ? "locked" : "unlocked"}</b>*/}
                     <br />
                   </Text>
                   <Text
@@ -169,13 +240,12 @@ const StakePage = () => {
                       fontSize: "2rem",
                     }}
                   >
-                    {/**Status: <b>{farmerStatus}</b>*/}
                     <br />
                   </Text>
                   
                 </Flex>
-                
-
+*/}                
+{/** 
                 <Flex
                   sx={{
                     gap: "1.6rem",
@@ -214,25 +284,14 @@ const StakePage = () => {
                     onClick={handleClaimButtonClick}
                     disabled={!Number(availableB)}
                   >
-                    Claim{/** {" "}
-                    <img
-                      sx={{
-                        margin: "0 .4rem 0 .8rem",
-                        maxHeight: "2.4rem",
-                      }}
-                      src="images/icon-list-item.png"
-                    />
-                    {availableA ? (
-                      <b>{(availableA / 1000000000).toFixed(2)}</b>
-                    ) : (
-                      0
-                    )}*/}
+                    Claim
                   </Button>
-                  {/**
+                  
+                  
                   <Button onClick={handleRefreshRewardsButtonClick}>
                     Refresh
                   </Button>
-                  */}
+                  
                 </Flex>
                 <Flex
                   sx={{
@@ -251,6 +310,7 @@ const StakePage = () => {
                   )}
                   &nbsp;
                 </Flex>
+*/}                
               </>
             ) : null}
 
@@ -476,7 +536,7 @@ const StakePage = () => {
                               }}
                               variant="small"
                             >
-                              Select Apes to withdraw them to your wallet.
+                              Select Apes to withdraw.
                             </Text>
                           ) : null}
 
