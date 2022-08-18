@@ -257,9 +257,7 @@ const StakePage = () => {
                             <CollectionItem
                               key={item.onchainMetadata.mint}
                               item={item}
-                              onClick={
-                                !isLocked ? handleWalletItemClick : () => true
-                              }
+                              onClick={handleWalletItemClick}
                               sx={{
                                 maxWidth: "16rem",
                                 "> img": {
@@ -273,29 +271,27 @@ const StakePage = () => {
                           )
                         })}
                       </div>
-                      {walletNFTs.length && !isLocked ? (
+                      {walletNFTs.length ? (
                         <Text
                           sx={{
                             margin: "3.2rem 0 .8rem 0",
                           }}
                           variant="small"
                         >
-                          Select NFTs to move them to your Vault.
+                          {isLocked
+                            ? "Unlock your vault to stake your NFTs."
+                            : "Select NFTs to move them to your Vault."}
                         </Text>
                       ) : null}
-                      <Text>
-                        {/* Selected:{" "}
-                    {selectedWalletItems && selectedWalletItems.length
-                      ? selectedWalletItems
-                          .map((NFT) => NFT.onchainMetadata.metaData.data.name)
-                          .join(", ")
-                      : null} */}
-                        {selectedWalletItems?.length && !isLocked ? (
-                          <Button onClick={handleMoveToVaultButtonClick}>
-                            Deposit selected
-                          </Button>
-                        ) : null}
-                      </Text>
+
+                      {selectedWalletItems && selectedWalletItems.length ? (
+                        <Button
+                          disabled={isLocked}
+                          onClick={handleMoveToVaultButtonClick}
+                        >
+                          Deposit selected
+                        </Button>
+                      ) : null}
                     </Flex>
                   ) : (
                     /** walletNFTs fetched but array is empty, means current wallet has no NFT. */
@@ -374,11 +370,7 @@ const StakePage = () => {
                                 <CollectionItem
                                   key={item.onchainMetadata.mint}
                                   item={item}
-                                  onClick={
-                                    !isLocked
-                                      ? handleVaultItemClick
-                                      : () => true
-                                  }
+                                  onClick={handleVaultItemClick}
                                   sx={{
                                     maxWidth: "16rem",
                                     "> img": {
@@ -392,16 +384,16 @@ const StakePage = () => {
                               )
                             })}
                           </div>
-                          {farmerVaultNFTs.length && !isLocked ? (
-                            <Text
-                              sx={{
-                                margin: "3.2rem 0 .8rem 0",
-                              }}
-                              variant="small"
-                            >
-                              Select NFTs to withdraw them to your wallet.
-                            </Text>
-                          ) : null}
+                          <Text
+                            sx={{
+                              margin: "3.2rem 0 .8rem 0",
+                            }}
+                            variant="small"
+                          >
+                            {isLocked
+                              ? "Unlock your vault to withdraw your NFTs."
+                              : "Select NFTs to withdraw them to your wallet."}
+                          </Text>
 
                           {selectedVaultItems && selectedVaultItems.length ? (
                             <>
@@ -409,11 +401,12 @@ const StakePage = () => {
                           {selectedVaultItems
                             .map((NFT) => NFT.onchainMetadata.metaData.data.name)
                             .join(", ")} */}
-                              {!isLocked ? (
-                                <Button onClick={handleMoveToWalletButtonClick}>
-                                  Withdraw selected
-                                </Button>
-                              ) : null}
+                              <Button
+                                disabled={isLocked}
+                                onClick={handleMoveToWalletButtonClick}
+                              >
+                                Withdraw selected
+                              </Button>
                             </>
                           ) : null}
                         </Flex>
