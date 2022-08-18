@@ -28,6 +28,7 @@ function App(props: AppProps) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Head>
+        <title>Gem Farm UI</title>
         {/** Load font styles directly on the document to prevent flashes */}
         <link href="/fonts/fonts.css" rel="stylesheet" />
       </Head>

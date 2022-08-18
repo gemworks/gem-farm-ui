@@ -63,14 +63,15 @@ const StakePage = () => {
           >
             Connect your wallet first.
           </Text>
-        ) : !farmerAccount ? (
-          // <LoadingIcon
-          //   size={"3.2rem"}
-          //   sx={{
-          //     margin: "3.2rem 0"
-          //   }}
-          // />
+        ) : !farmId ? (
           <Text mt="1.6rem">Farm ID is not configured.</Text>
+        ) : !farmerAccount ? (
+          <LoadingIcon
+            size={"3.2rem"}
+            sx={{
+              margin: "3.2rem 0",
+            }}
+          />
         ) : /** If there is farmerAccount variable, but no address, it means account isn't initialized */
         farmerAccount && !farmerAccount?.identity ? (
           <Button

@@ -14,7 +14,7 @@ import { GemBank } from "lib/gem-farm/common/gem-bank"
 const useGemFarmStaking = (farmId: string) => {
   const { connection } = useConnection()
   const wallet = useAnchorWallet() as SignerWalletAdapter
-  const { walletNFTs } = useWalletNFTs()
+  const { walletNFTs, fetchNFTs } = useWalletNFTs()
 
   const [farmAccount, setFarmAccount] = useState<any>(null) // @TODO add type to farmAccount
   const [farmerAccount, setFarmerAccount] = useState<any>(null) // @TODO add type to farmerAccount
@@ -238,7 +238,7 @@ const useGemFarmStaking = (farmId: string) => {
     }
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
+    await fetchNFTs()
 
     setFeedbackStatus("")
 
@@ -256,7 +256,7 @@ const useGemFarmStaking = (farmId: string) => {
     }
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
+    await fetchNFTs()
 
     setFeedbackStatus("")
 
@@ -274,10 +274,9 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
+    await fetchNFTs()
 
     setFeedbackStatus("")
-    // selectedNFTs.value = [];
   }
 
   const handleUnstakeButtonClick = async () => {
@@ -290,10 +289,8 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
 
     setFeedbackStatus("")
-    // selectedNFTs.value = [];
   }
 
   const handleClaimButtonClick = async () => {
@@ -310,10 +307,8 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
 
     setFeedbackStatus("")
-    // await fetchFarmer();
   }
 
   const handleInitStakingButtonClick = async () => {
@@ -326,9 +321,8 @@ const useGemFarmStaking = (farmId: string) => {
     )
 
     await connection.confirmTransaction(txSig)
-    // await fetchFarmer();
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
+    await fetchNFTs()
 
     setFeedbackStatus("")
   }
@@ -346,7 +340,6 @@ const useGemFarmStaking = (farmId: string) => {
     await connection.confirmTransaction(txSig)
 
     await fetchFarmerAccount(gemFarmClient, gemBankClient)
-    // await refetchNFTs()
 
     setFeedbackStatus("")
   }
