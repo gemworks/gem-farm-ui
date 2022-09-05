@@ -1,72 +1,44 @@
 import { Connection, PublicKey } from "@solana/web3.js"
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token"
-import axios from "axios"
+import {isLazyNft, Metaplex, Nft} from '@metaplex-foundation/js';
 import { programs } from "@metaplex/js"
-
 import { NFT } from "@/hooks/useWalletNFTs"
 
-const {
-  metadata: { Metadata },
-} = programs
-
-async function getNFTMetadata(
-  mint: string,
-  conn: Connection,
-  pubkey?: string
-): Promise<NFT | undefined> {
-  try {
-    const metadataPDA = await Metadata.getPDA(mint)
-    const onchainMetadata = (await Metadata.load(conn, metadataPDA)).data
-    const externalMetadata = (await axios.get(onchainMetadata.data.uri)).data
-
-    return {
-      pubkey: pubkey ? new PublicKey(pubkey) : undefined,
-      mint: new PublicKey(mint),
-      onchainMetadata,
-      externalMetadata,
+export function matchMetadataWithType(token: Nft): NFT {
+  return {
+    mint: token.mintAddress,
+    onchainMetadata: (token as unknown as programs.metadata.MetadataData),
+    externalMetadata: {
+      image: token.json.image,
+      external_url: token.json.external_url,
+      seller_fee_basis_points: token.json.seller_fee_basis_points,
+      attributes: token.json.attributes,
+      description: token.json.description,
+      collection: token.json.collection,
+      name: token.json.name
     }
-  } catch (e) {
-    console.log(`failed to pull metadata for token ${mint}`)
   }
 }
 
 export async function getNFTMetadataForMany(
-  tokens: any[],
-  conn: Connection
+    tokens: any[],
+    metaplex: Metaplex
 ): Promise<NFT[]> {
-  const promises: Promise<NFT | undefined>[] = []
-  tokens.forEach((token) =>
-    promises.push(getNFTMetadata(token.mint, conn, token.pubkey))
-  )
-  const nfts = (await Promise.all(promises)).filter((n) => !!n)
+  const pubkeys = tokens.map(token => { return new PublicKey(token)});
+  const nfts = await metaplex.nfts().findAllByMintList(pubkeys, { commitment: "confirmed" }).run();
 
-  return nfts
+  return nfts.map(token => {
+    if (isLazyNft(token)) return;
+    return matchMetadataWithType(token);
+  });
 }
 
-/**
- *
- * @author https://github.com/gemworks/gem-farm/tree/main/app/gem-farm
- */
 export async function getNFTsByOwner(
-  owner: PublicKey,
-  conn: Connection
+    owner: PublicKey,
+    metaplex: Metaplex
 ): Promise<NFT[]> {
-  const tokenAccounts = await conn.getParsedTokenAccountsByOwner(owner, {
-    programId: TOKEN_PROGRAM_ID,
-  })
-
-  const tokens = tokenAccounts.value
-    .filter((tokenAccount) => {
-      const amount = tokenAccount.account.data.parsed.info.tokenAmount
-
-      return amount.decimals === 0 && amount.uiAmount === 1
-    })
-    .map((tokenAccount) => {
-      return {
-        pubkey: tokenAccount.pubkey,
-        mint: tokenAccount.account.data.parsed.info.mint,
-      }
-    })
-
-  return await getNFTMetadataForMany(tokens, conn)
+  const nfts = await metaplex.nfts().findAllByOwner(owner, { commitment: "confirmed" }).run();
+  return nfts.map(token => {
+    if (isLazyNft(token)) return;
+    return matchMetadataWithType(token);
+  });
 }
