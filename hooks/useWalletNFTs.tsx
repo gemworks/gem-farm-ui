@@ -3,28 +3,29 @@ import { programs } from "@metaplex/js"
 import { useCallback, useEffect, useState } from "react"
 import { getNFTsByOwner } from "utils/nfts"
 import { useConnection, useWallet } from "@solana/wallet-adapter-react"
+import {Metaplex} from "@metaplex-foundation/js";
 
 export type NFT = {
   pubkey?: PublicKey
   mint: PublicKey
   onchainMetadata: programs.metadata.MetadataData
   externalMetadata: {
-    attributes: Array<any>
-    collection: any
-    description: string
-    edition: number
-    external_url: string
-    image: string
-    name: string
-    properties: {
-      files: Array<string>
-      category: string
-      creators: Array<{
-        pubKey: string
-        address: string
+    attributes?: Array<any>
+    collection?: any
+    description?: string
+    edition?: number
+    external_url?: string
+    image?: string
+    name?: string
+    properties?: {
+      files?: Array<string>
+      category?: string
+      creators?: Array<{
+        pubKey?: string
+        address?: string
       }>
     }
-    seller_fee_basis_points: number
+    seller_fee_basis_points?: number
   }
 }
 
@@ -34,10 +35,11 @@ const useWalletNFTs = (
 ) => {
   const { connection } = useConnection()
   const { publicKey } = useWallet()
-  const [walletNFTs, setWalletNFTs] = useState<Array<NFT> | null>(null)
+  const [walletNFTs, setWalletNFTs] = useState<Array<NFT> | null>(null);
+  const metaplex = new Metaplex(connection);
 
   const fetchNFTs = useCallback(async () => {
-    const NFTs = await getNFTsByOwner(publicKey, connection)
+    const NFTs = await getNFTsByOwner(publicKey, metaplex);
 
     const filtered = creators
       ? NFTs.filter((NFT) => {
