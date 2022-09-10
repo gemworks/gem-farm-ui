@@ -123,8 +123,9 @@ const useGemFarmStaking = (farmId: string) => {
 
           /** Fetch metadatas for Vault NFTs */
           const currentVaultNFTs = await getNFTMetadataForMany(
-            mints,
-            metaplex
+              mints,
+              metaplex,
+              wallet.publicKey
           )
 
           /** Transform to use on the UI */
@@ -189,6 +190,8 @@ const useGemFarmStaking = (farmId: string) => {
   ) => {
     if (!gemBankClient)
       throw new Error("No Gem Bank client has been initialized.")
+
+    console.log(source, "dupa");
 
     const { txSig } = await gemBankClient.depositGemWallet(
       new PublicKey(farmAccount.bank),

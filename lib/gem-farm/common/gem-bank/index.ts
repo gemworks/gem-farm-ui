@@ -73,9 +73,11 @@ export class GemBank extends GemBankClient {
     gemSource: PublicKey,
     creator: PublicKey
   ) {
-    const [mintProof, bump] = await findWhitelistProofPDA(bank, gemMint)
-    const [creatorProof, bump2] = await findWhitelistProofPDA(bank, creator)
-    const metadata = await programs.metadata.Metadata.getPDA(gemMint)
+    const [mintProof, bump] = await findWhitelistProofPDA(bank, gemMint);
+    const [creatorProof, bump2] = await findWhitelistProofPDA(bank, creator);
+    const metadata = await programs.metadata.Metadata.getPDA(gemMint);
+
+    console.log(gemSource);
 
     return this.depositGem(
       bank,
