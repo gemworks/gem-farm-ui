@@ -1,72 +1,94 @@
 import { Connection, PublicKey } from "@solana/web3.js"
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token"
-import axios from "axios"
+import {isLazyNft, Metaplex, Nft} from '@metaplex-foundation/js';
 import { programs } from "@metaplex/js"
-
 import { NFT } from "@/hooks/useWalletNFTs"
 
-const {
-  metadata: { Metadata },
-} = programs
+export async function matchMetadataWithType(token: Nft, metaplex: Metaplex, owner: PublicKey): Promise<NFT> {
 
-async function getNFTMetadata(
-  mint: string,
-  conn: Connection,
-  pubkey?: string
-): Promise<NFT | undefined> {
-  try {
-    const metadataPDA = await Metadata.getPDA(mint)
-    const onchainMetadata = (await Metadata.load(conn, metadataPDA)).data
-    const externalMetadata = (await axios.get(onchainMetadata.data.uri)).data
+  const pubkey = await metaplex
+      .connection
+      .getParsedTokenAccountsByOwner(
+          owner,
+          {mint: token.mintAddress},
+          'confirmed'
+      );
 
+  const creators = token.creators.map(creator => {
     return {
-      pubkey: pubkey ? new PublicKey(pubkey) : undefined,
-      mint: new PublicKey(mint),
-      onchainMetadata,
-      externalMetadata,
+      address: creator.address.toString(),
+      verified: creator.verified,
+      share: creator.share
     }
-  } catch (e) {
-    console.log(`failed to pull metadata for token ${mint}`)
+  });
+
+  return {
+    pubkey: pubkey.value[0].pubkey,
+    mint: token.mintAddress,
+    onchainMetadata: {
+      data: {
+        name: token.name,
+        symbol: token.symbol,
+        creators: creators,
+        sellerFeeBasisPoints: token.sellerFeeBasisPoints,
+        uri: token.uri
+      },
+      mint: token.mintAddress.toString(),
+      edition: token.edition.address.toString(),
+      collection: {
+        verified: token.collection?.verified,
+        key: token.collection?.key.toString()
+      },
+      editionNonce: token.editionNonce,
+      isMutable: token.isMutable,
+      primarySaleHappened: token.primarySaleHappened,
+      tokenStandard: token.tokenStandard,
+      uses: {
+        useMethod: token.uses?.useMethod,
+        remaining: token.uses?.remaining.toNumber(),
+        total: token.uses?.total.toNumber(),
+      },
+      updateAuthority: token.updateAuthorityAddress.toString(),
+      masterEdition: "",
+      key: 1
+    },
+    externalMetadata: {
+      image: token.json.image,
+      external_url: token.json.external_url,
+      seller_fee_basis_points: token.json.seller_fee_basis_points,
+      attributes: token.json.attributes,
+      description: token.json.description,
+      collection: token.json.collection,
+      name: token.json.name
+    }
   }
 }
 
 export async function getNFTMetadataForMany(
-  tokens: any[],
-  conn: Connection
+    tokens: any[],
+    metaplex: Metaplex,
+    owner: PublicKey,
 ): Promise<NFT[]> {
-  const promises: Promise<NFT | undefined>[] = []
-  tokens.forEach((token) =>
-    promises.push(getNFTMetadata(token.mint, conn, token.pubkey))
-  )
-  const nfts = (await Promise.all(promises)).filter((n) => !!n)
+  const pubkeys = tokens.map(token => { return new PublicKey(token)});
+  const nfts = await metaplex.nfts().findAllByMintList(pubkeys, { commitment: "confirmed" }).run();
 
-  return nfts
+  const validatedNfts = await Promise.all(nfts.map(async (token) => {
+    const nonLazyNft = isLazyNft(token) ? (await metaplex.nfts().loadNft(token).run()) : token;
+    return matchMetadataWithType(nonLazyNft, metaplex, owner);
+  }));
+
+  return validatedNfts;
 }
 
-/**
- *
- * @author https://github.com/gemworks/gem-farm/tree/main/app/gem-farm
- */
 export async function getNFTsByOwner(
-  owner: PublicKey,
-  conn: Connection
+    owner: PublicKey,
+    metaplex: Metaplex
 ): Promise<NFT[]> {
-  const tokenAccounts = await conn.getParsedTokenAccountsByOwner(owner, {
-    programId: TOKEN_PROGRAM_ID,
-  })
+  const nfts = await metaplex.nfts().findAllByOwner(owner, { commitment: "confirmed" }).run();
 
-  const tokens = tokenAccounts.value
-    .filter((tokenAccount) => {
-      const amount = tokenAccount.account.data.parsed.info.tokenAmount
+  const validatedNfts = await Promise.all(nfts.map(async (token) => {
+    const nonLazyNft = isLazyNft(token) ? (await metaplex.nfts().loadNft(token).run()) : token;
+    return matchMetadataWithType(nonLazyNft, metaplex, owner);
+  }));
 
-      return amount.decimals === 0 && amount.uiAmount === 1
-    })
-    .map((tokenAccount) => {
-      return {
-        pubkey: tokenAccount.pubkey,
-        mint: tokenAccount.account.data.parsed.info.mint,
-      }
-    })
-
-  return await getNFTMetadataForMany(tokens, conn)
+  return validatedNfts;
 }
