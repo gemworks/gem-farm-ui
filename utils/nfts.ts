@@ -9,7 +9,7 @@ export async function matchMetadataWithType(token: Nft, metaplex: Metaplex, owne
       .connection
       .getParsedTokenAccountsByOwner(
           owner,
-          {mint: token.mintAddress },
+          {mint: token.mintAddress},
           'confirmed'
       );
 

@@ -191,8 +191,6 @@ const useGemFarmStaking = (farmId: string) => {
     if (!gemBankClient)
       throw new Error("No Gem Bank client has been initialized.")
 
-    console.log(source, "dupa");
-
     const { txSig } = await gemBankClient.depositGemWallet(
       new PublicKey(farmAccount.bank),
       new PublicKey(farmerAccount.vault),
