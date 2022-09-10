@@ -13,7 +13,6 @@
     "@gemworks/gem-farm-ts": "^0.24.1",
     "@mdx-js/react": "1.6.22",
     "@metaplex/js": "^4.12.0",
-    "@metaplex-foundation/js": "^0.13.3",
     "@solana/wallet-adapter-react": "^0.15.4",
     "@solana/wallet-adapter-react-ui": "^0.9.6",
     "@solana/wallet-adapter-wallets": "^0.15.5",
