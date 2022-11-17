@@ -121,8 +121,10 @@ const useGemFarmStaking = (farmId: string) => {
 
           /** Fetch metadatas for Vault NFTs */
           const currentVaultNFTs = await getNFTMetadataForMany(
-            mints,
-            connection
+              mints,
+              metaplex,
+              wallet.publicKey
+        
           )
 
           /** Transform to use on the UI */
