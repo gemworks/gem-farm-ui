@@ -10,11 +10,13 @@ import { initGemBank } from "lib/gem-farm/common/gem-bank"
 import { GemFarm, initGemFarm } from "lib/gem-farm/common/gem-farm"
 import { getNFTMetadataForMany } from "utils/nfts"
 import { GemBank } from "lib/gem-farm/common/gem-bank"
+import { Metaplex } from "@metaplex-foundation/js"
 
 const useGemFarmStaking = (farmId: string) => {
   const { connection } = useConnection()
   const wallet = useAnchorWallet() as SignerWalletAdapter
   const { walletNFTs, fetchNFTs } = useWalletNFTs()
+  const metaplex = new Metaplex(connection)
 
   const [farmAccount, setFarmAccount] = useState<any>(null) // @TODO add type to farmAccount
   const [farmerAccount, setFarmerAccount] = useState<any>(null) // @TODO add type to farmerAccount
@@ -121,10 +123,9 @@ const useGemFarmStaking = (farmId: string) => {
 
           /** Fetch metadatas for Vault NFTs */
           const currentVaultNFTs = await getNFTMetadataForMany(
-              mints,
-              metaplex,
-              wallet.publicKey
-        
+            mints,
+            metaplex,
+            wallet.publicKey
           )
 
           /** Transform to use on the UI */
